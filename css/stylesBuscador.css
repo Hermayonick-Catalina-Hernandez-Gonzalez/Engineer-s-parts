@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; 
+    font-family: "Times New Roman", serif;
+    overflow: hidden;
+}
+
+.panel {
+    width: 8cm; 
+    height: 100vh;
+    background: linear-gradient(#C989BB, #7859A6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; 
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    margin: 10px 0; 
+    margin-left: 30px;
+}
+
+.opcion img {
+    width: 35px;
+    height: 35px; 
+    margin-right: 10px; 
+}
+
+.opcion a {
+    color: black; 
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.opcion span {
+    font-size: larger;
+    font-weight: bold;
+    flex-grow: 1;
+    color: black; 
+}
+
+.espacio {
+    margin-bottom: 10px;
+}
+
+#lydch {
+    font-size: 24px;
+    text-align: center;
+    color: black;
+}
+
+
+#perfil {
+    margin-top: auto;
+    margin-bottom: 210px;
+    text-align: center;
+}
+
+#perfil img {
+    width: 60px;
+    height: 60px; 
+}
+.contenedor {
+    background-color: #ffffff; 
+    height: calc(100vh - 210px); 
+    overflow-y: auto; 
+    margin-left: 10cm; 
+}
+
+.encabezado {
+    padding: 20px;
+    background-color: #ffffff; 
+    display: flex;
+    align-items: center;
+}
+
+.encabezado input[type="text"] {
+    flex-grow: 1; 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #c3c3c3; 
+}
+
+.encabezado input[type="text"]:focus {
+    outline: none;
+}
+
+.encabezado button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.boton-buscar img {
+    width: 55px; 
+    height: 55px; 
+}
+
+.perfil-usuario {
+    margin-bottom: 20px; 
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.foto-usuario {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+.nombre-usuario {
+    font-size: 20px;
+    font-weight: bold; 
+    color: rgb(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+    .opcion span {
+        display: none;
+    }
+
+    .panel {
+        width: 3cm; /* Ajuste para pantallas pequeñas */
+    }
+
+    .opcion img {
+        width: 30px; 
+        height: 30px;
+    }
+
+    #lydch a img , #perfil img {
+        width: 35px !important; 
+        height: 35px !important;
+    }
+}

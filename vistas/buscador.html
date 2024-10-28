@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar</title>
+    <link rel="icon" href="../img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/stylesBuscador.css">
+    <script>
+        function buscarUsuarios(texto) {
+            // Verificar si el texto de búsqueda no está vacío
+            if (texto.trim() !== "") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("perfil-usuario").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("POST", "../php/buscador_usuarios.php", true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("texto=" + encodeURIComponent(texto));
+            } else {
+                // Limpiar la lista de resultados si el texto está vacío
+                document.getElementById("perfil-usuario").innerHTML = "";
+            }
+        }
+
+        // Función para actualizar la búsqueda automáticamente cada 5 segundos
+        function actualizarBusqueda() {
+            var texto = document.getElementById("search").value;
+            buscarUsuarios(texto);
+            setTimeout(actualizarBusqueda, 5000); // 5000 milisegundos = 5 segundos
+        }
+
+        // Llamar a la función de actualización al cargar la página
+        window.onload = function () {
+            actualizarBusqueda();
+        };
+    </script>
+</head>
+
+<body>
+    <div class="panel">
+        <div class="opcion" id="lydch"><a href="#"><img src="../img/Logo.png" alt="LYDCH" style="width: 60px; height: 60px;"><span style="font-size: larger; font-weight: bold;">UPVBOOKS</span></a>
+        </div>
+        <div class="espacio"></div>
+        <div class="opcion"><a href="../index.php"><img src="../img/Inicio.png" alt="Inicio"><span>Inicio</span></a>
+        </div>
+        <div class="opcion"><a href="./buscador.html"><img src="../img/Buscador.png" alt="Buscador"><span>Buscador</span></a>
+        </div>
+        <div class="opcion"><a href="./crear.php"><img src="../img/Crear.png" alt="Crear"><span>Crear</span></a>
+        </div>
+        <div class="opcion" id="perfil"><a href="./perfil.php"><img src="../img/usuario.png" alt="Perfil"><span>Perfil</span></a>
+        </div>
+        <div class="opcion"><a href="../php/logout.php"><img src="../img/Salir.png" alt="Salir"><span>Salir</span></a></div>
+    </div>
+
+
+    <div class="contenedor">
+        <header class="encabezado">
+            <input type="text" name="texto_busqueda" id="search" placeholder="Buscar..." oninput="buscarUsuarios(this.value)">
+            <button class="boton-buscar"><img src="../img/Buscador.png" alt="Buscar"></button>
+        </header>
+        <ul class="perfil-usuario" id="perfil-usuario"></ul>
+    </div>
+</body>
+</html>

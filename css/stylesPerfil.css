@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; 
+    font-family: "Times New Roman", serif;
+    overflow: hidden;
+}
+
+.panel {
+    width: 8cm; 
+    height: 100vh;
+    background: linear-gradient(#C989BB, #7859A6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    margin: 10px 0; 
+    margin-left: 30px;
+}
+
+.opcion img {
+    width: 35px;
+    height: 35px; 
+    margin-right: 10px; 
+}
+
+.opcion a {
+    color: black; 
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.opcion span {
+    font-size: larger;
+    font-weight: bold;
+    flex-grow: 1;
+    color: black; 
+}
+
+.espacio {
+    margin-bottom: 10px;
+}
+
+#lydch {
+    font-size: 24px;
+    text-align: center;
+    color: black;
+}
+#perfil {
+    margin-top: auto;
+    margin-bottom: 210px;
+    text-align: center;
+}
+
+#perfil img {
+    width: 60px;
+    height: 60px;
+}
+
+.contenedor {
+    background-color: #ffffff;
+    margin-left: 6cm;
+    height: 99.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil::-webkit-scrollbar {
+    width: 0;
+}
+
+.perfil {
+    max-width: 800px;
+    max-height: calc(100vh - 5cm);
+    padding: 20px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.foto-usuario img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.info-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nombre-usuario {
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.editar-perfil {
+    background: linear-gradient(#C989BB, #7859A6);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.editar-perfil a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.datos-usuario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.informacion-usuario {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+.informacion-detallada {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.galeria img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.imagen-container {
+    position: relative;
+}
+
+.borrar-foto {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.977);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.publicacion {
+    position: relative;
+    display: inline-block;
+}
+
+.eliminar-publicacion {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .opcion span {
+        display: none;
+    }
+
+    .panel {
+        width: 2cm;
+    }
+
+    .opcion img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #lydch a img,
+    #perfil img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .contenedor {
+        margin-left: 2cm;
+    }
+
+    .perfil {
+        padding: 10px;
+    }
+
+    .editar-perfil {
+        margin-top: 10px;
+    }
+
+    .foto-usuario img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .foto-usuario {
+        text-align: center;
+    }
+
+    .info-usuario {
+        flex-direction: column;
+    }
+
+    .nombre-usuario {
+        font-size: 20px;
+    }
+
+    .datos-usuario {
+        flex-direction: column;
+    }
+
+    .informacion-usuario {
+        font-size: 20px;
+    }
+
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria img {
+        width: 100px;
+        height: 100px;
+    }
+}
