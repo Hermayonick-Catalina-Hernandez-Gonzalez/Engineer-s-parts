@@ -68,32 +68,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="card">
-        <h1>Editar Perfil</h1>
-        <p><?php if (isset($mensaje)) echo $mensaje; ?></p>
-        <form class="ingresos" action="" method="post" enctype="multipart/form-data">
-            <label for="imagen">Cambia tu foto de perfil:</label>
-            <input type="file" name="imagen" id="imagen">
-            <label for="nombre">Nombre:</label>
-            <input type="text" placeholder="Usuario..." name="nombre" id="nombre" value="<?= htmlspecialchars($result['nombre']) ?>" required>
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" placeholder="Apellido..." name="apellidos" id="apellidos" value="<?= htmlspecialchars($result['apellidos']) ?>">
-            <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value="<?= htmlspecialchars($result['fecha_nacimiento']) ?>">
-            <label>Género:</label>
-            <select id="genero" name="genero">
-                <option value="O" <?= ($result['genero'] === 'O') ? 'selected' : '' ?>>Selecciona tu género...</option>
-                <option value="M" <?= ($result['genero'] === 'M') ? 'selected' : '' ?>>Masculino</option>
-                <option value="F" <?= ($result['genero'] === 'F') ? 'selected' : '' ?>>Femenino</option>
-                <option value="X" <?= ($result['genero'] === 'X') ? 'selected' : '' ?>>Prefiero no especificar</option>
-            </select>
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" value="<?= htmlspecialchars($result['email']) ?>" required>
-            <div class="cont-btn">
-                <button type="button" class="salir" onclick="window.location.href = './perfil.php'">Salir</button>
-                <button type="submit" class="guardar">Modificar</button>
-            </div>
-        </form>
+    <header class="navbar">
+        <div class="logo">
+            <img src="../img/Logo.png" alt="Logo">
+            <span>Engineer's parts</span>
+        </div>
+        <nav>
+            <a href="../index.php"><span>Inicio</span></a>
+            <a href="../vistas/buscador.html"><span>Buscador</span></a>
+            <a href="../vistas/crear.php"><span>Crear</span></a>
+        </nav>
+        <div class="user-icon">
+            <a href="../vistas/perfil.php"><img src="../img/usuario.png" alt="Usuario"></a>
+        </div>
+    </header>
+
+    <div class="contenedor-editar">
+        <div class="card">
+            <h1>Editar Perfil</h1>
+            <p><?php if (isset($mensaje)) echo $mensaje; ?></p>
+            <form class="ingresos" action="" method="post" enctype="multipart/form-data">
+                <label for="imagen">Cambia tu foto de perfil:</label>
+                <input type="file" name="imagen" id="imagen">
+                
+                <label for="username">Nombre Usuario:</label>
+                <input type="text" placeholder="Usuario..." name="username" id="username" value="<?= htmlspecialchars($result['username']) ?>" required>
+                
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" value="<?= htmlspecialchars($result['email']) ?>" required>
+                
+                <label for="password">Contraseña:</label>
+                <input type="password" placeholder="Nueva contraseña..." id="password" name="password">
+                
+                <div class="cont-btn">
+                    <button type="button" class="salir" onclick="window.location.href = './perfil.php'">Salir</button>
+                    <button type="submit" class="guardar">Modificar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

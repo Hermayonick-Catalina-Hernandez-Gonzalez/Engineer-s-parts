@@ -41,28 +41,33 @@
 </head>
 
 <body>
-    <div class="panel">
-        <div class="opcion" id="lydch"><a href="#"><img src="../img/Logo.png" alt="LYDCH" style="width: 60px; height: 60px;"><span style="font-size: larger; font-weight: bold;">UPVBOOKS</span></a>
+    <header class="navbar">
+        <div class="logo">
+            <img src="../img/Logo.png" alt="Logo">
+            <span>Engineer's parts</span>
         </div>
-        <div class="espacio"></div>
-        <div class="opcion"><a href="../index.php"><img src="../img/Inicio.png" alt="Inicio"><span>Inicio</span></a>
+        <nav>
+            <a href="index.php"><span>Inicio</span></a>
+            <a href="../vistas/buscador.html"><span>Buscador</span></a>
+            <a href="../vistas/crear.php"><span>Crear</span></a>
+        </nav>
+        <div class="user-icon">
+            <a href="../vistas/perfil.php"><img src="../img/usuario.png" alt="Usuario"></a>
         </div>
-        <div class="opcion"><a href="./buscador.html"><img src="../img/Buscador.png" alt="Buscador"><span>Buscador</span></a>
-        </div>
-        <div class="opcion"><a href="./crear.php"><img src="../img/Crear.png" alt="Crear"><span>Crear</span></a>
-        </div>
-        <div class="opcion" id="perfil"><a href="./perfil.php"><img src="../img/usuario.png" alt="Perfil"><span>Perfil</span></a>
-        </div>
-        <div class="opcion"><a href="../php/logout.php"><img src="../img/Salir.png" alt="Salir"><span>Salir</span></a></div>
-    </div>
+    </header>
 
 
     <div class="contenedor">
         <header class="encabezado">
-            <input type="text" name="texto_busqueda" id="search" placeholder="Buscar..." oninput="buscarUsuarios(this.value)">
-            <button class="boton-buscar"><img src="../img/Buscador.png" alt="Buscar"></button>
+            <div class="barra-busqueda">
+                <input type="text" name="texto_busqueda" id="search" placeholder="Buscar..."
+                    oninput="buscarUsuarios(this.value)">
+                <img src="../img/Buscador.png" alt="Buscar" class="icono-buscar">
+            </div>
         </header>
         <ul class="perfil-usuario" id="perfil-usuario"></ul>
     </div>
+
 </body>
+
 </html>

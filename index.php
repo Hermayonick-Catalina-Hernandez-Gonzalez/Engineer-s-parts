@@ -31,15 +31,20 @@ $stmt->execute([$usuarioID, $usuarioID]);
 </head>
 
 <body>
-    <div class="panel">
-        <div class="opcion" id="lydch"><a href="#"><img src="./img/Logo.png" alt="LYDCH" style="width: 60px; height: 60px;"><span style="font-size: larger; font-weight: bold;">UPVBOOKS</span></a></div>
-        <div class="espacio"></div>
-        <div class="opcion"><a href="index.php"><img src="./img/Inicio.png" alt="Inicio"><span>Inicio</span></a></div>
-        <div class="opcion"><a href="./vistas/buscador.html"><img src="./img/Buscador.png" alt="Buscador"><span>Buscador</span></a></div>
-        <div class="opcion"><a href="vistas/crear.php"><img src="./img/Crear.png" alt="Crear"><span>Crear</span></a></div>
-        <div class="opcion" id="perfil"><a href="vistas/perfil.php"><img src="./img/usuario.png" alt="Perfil"><span>Perfil</span></a></div>
-        <div class="opcion"><a href="php/logout.php"><img src="./img/Salir.png" alt="Salir"><span>Salir</span></a></div>
-    </div>
+    <header class="navbar">
+        <div class="logo">
+            <img src="img/Logo.png" alt="Logo">
+            <span>Engineer's parts</span>
+        </div>
+        <nav>
+            <a href="index.php"><span>Inicio</span></a>
+            <a href="./vistas/buscador.html"><span>Buscador</span></a>
+            <a href="./vistas/crear.php"><span>Crear</span></a>
+        </nav>
+        <div class="user-icon">
+            <a href="./vistas/perfil.php"><img src="./img/usuario.png" alt="Usuario"></a>
+        </div>
+    </header>
 
     <div class="usuario-publicacion">
         <?php
@@ -65,7 +70,7 @@ $stmt->execute([$usuarioID, $usuarioID]);
                             <img src="fotos/<?= htmlspecialchars($publicacion["secure_id"] . "." . $publicacion["extension"]) ?>" alt="<?= htmlspecialchars($publicacion["nombre_archivo"]) ?>">
                         </div>
 
-                        
+
                     </div>
                 </div>
         <?php

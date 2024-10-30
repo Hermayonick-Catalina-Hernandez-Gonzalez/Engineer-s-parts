@@ -6,4 +6,4 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: ../vistas/login.php");
+header("LOcation: ../vistas/login.php");

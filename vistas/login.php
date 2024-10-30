@@ -36,7 +36,7 @@ if($_POST) {
 </head>
 <body>
     <div class="card">
-        <h1>UPVBOOKS</h1>
+        <h1>Engineer's parts</h1>
         <div class="circ-img">
             <img src="../img/Logo.png" />
         </div>
@@ -48,7 +48,7 @@ if($_POST) {
             <input type="password" placeholder="Contraseña..." name="password" id="password">
             
             <div class="cont-btn">
-                <button type="submit">Iniciar</button>
+                <button type="submit">Iniciar Sesion</button>
             </div>
         </form>
         <p>Aun no tienes cuenta? <a href="registrarse.php">Regístrate</a></p>

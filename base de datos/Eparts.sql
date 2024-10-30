@@ -1,5 +1,5 @@
 -- Creación de la base de datos.
-CREATE DATABASE `Eparts` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE `Eparts`;
 
 USE Eparts;
 
@@ -10,10 +10,6 @@ CREATE TABLE `usuarios` (
   `email` varchar(512) NOT NULL,
   `password_encrypted` varchar(128) NOT NULL,
   `password_salt` varchar(64) NOT NULL,
-  `nombre` varchar(512) NOT NULL,
-  `apellidos` varchar(512) DEFAULT NULL,
-  `genero` varchar(1) DEFAULT NULL,
-  `fecha_nacimiento` date DEFAULT NULL,
   `fecha_hora_registro` datetime NOT NULL,
   `activo` tinyint(4) NOT NULL,
   `foto_perfil` BLOB,  
@@ -66,8 +62,6 @@ SELECT
   `fotos`.`fecha_subido`,
   `fotos`.`eliminado`,
   `fotos`.`usuario_subio_id` AS `user_id`,
-  `usuarios`.`nombre`,
-  `usuarios`.`apellidos`,
   `usuarios`.`foto_perfil`,
   `usuarios`.`username`,
   `usuarios`.`email`

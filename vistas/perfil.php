@@ -1,4 +1,4 @@
-<?php 
+<?php
 require "../php/sesion_requerida.php";
 require "../php/connection.php";
 
@@ -13,11 +13,11 @@ $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Verificar si el usuario tiene una foto de perfil guardada
 if (!empty($usuario['foto_perfil'])) {
-    // Si el campo foto_perfil contiene el nombre de un archivo, cargar desde la carpeta fotos_perfil
-    $imagen_usuario = "../fotos_perfil/" . $usuario['foto_perfil'];
+  // Si el campo foto_perfil contiene el nombre de un archivo, cargar desde la carpeta fotos_perfil
+  $imagen_usuario = "../fotos_perfil/" . $usuario['foto_perfil'];
 } else {
-    // Imagen predeterminada si no hay foto de perfil
-    $imagen_usuario = "../img/default_perfil.png"; 
+  // Imagen predeterminada si no hay foto de perfil
+  $imagen_usuario = "../img/default_perfil.png";
 }
 
 // Consulta para obtener el número de publicaciones
@@ -60,21 +60,27 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
 </head>
 
 <body>
-  <div class="panel">
-    <div class="opcion" id="lydch"><a href="#"><img src="../img/Logo.png" alt="LYDCH" style="width: 60px; height: 60px;"><span style="font-size: larger; font-weight: bold;">UPVBOOKS</span></a></div>
-    <div class="espacio"></div>
-    <div class="opcion"><a href="../index.php"><img src="../img/Inicio.png" alt="Inicio"><span>Inicio</span></a></div>
-    <div class="opcion"><a href="./buscador.html"><img src="../img/Buscador.png" alt="Buscador"><span>Buscador</span></a></div>
-    <div class="opcion"><a href="./crear.php"><img src="../img/Crear.png" alt="Crear"><span>Crear</span></a></div>
-    <div class="opcion" id="perfil"><a href="./perfil.php"><img src="../img/usuario.png" alt="Perfil"><span>Perfil</span></a></div>
-    <div class="opcion"><a href="../php/logout.php"><img src="../img/Salir.png" alt="Salir"><span>Salir</span></a></div>
-  </div>
+  <header class="navbar">
+    <div class="logo">
+      <img src="../img/Logo.png" alt="Logo">
+      <span>Engineer's parts</span>
+    </div>
+    <nav>
+      <a href="../index.php">Inicio</a>
+      <a href="./buscador.html">Buscador</a>
+      <a href="./crear.php">Crear</a>
+    </nav>
+    <div class="user-icon">
+      <a href="../php/logout.php"><img src="../img/usuario.png" alt="Usuario"></a>
+    </div>
+  </header>
 
   <div class="contenedor">
     <div class="perfil">
       <div class="foto-usuario">
-        <img src="<?php echo $imagen_usuario; ?>" alt="Foto de Usuario" class="foto-usuario">
+        <img src="../img/default_perfil.jpg" alt="Foto de Usuario">
       </div>
+
 
       <div class="info-usuario">
         <div class="nombre-usuario"><?php echo htmlspecialchars($usuario['username']); ?></div>
@@ -88,17 +94,12 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
       </div>
 
       <div class="galeria">
-        <?php if (isset($publicaciones_usuario) && !empty($publicaciones_usuario)) : ?>
-          <?php foreach ($publicaciones_usuario as $publicacion) : ?>
-            <div class="publicacion">
-              <img src="../fotos/<?php echo htmlspecialchars($publicacion['secure_id'] . "." . $publicacion['extension']); ?>" alt="<?php echo htmlspecialchars($publicacion['descripcion']); ?>">
-              <form method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta publicación?');" action="../php/borrar_archivo.php">
-                <input type="hidden" name="publicacion_id" value="<?php echo $publicacion['id']; ?>" id="publicacion_id">
-                <button class="eliminar-publicacion" type="submit" name="eliminar_publicacion">Eliminar</button>
-              </form>
-            </div>
-          <?php endforeach; ?>
-        <?php endif; ?>
+        <?php foreach ($publicaciones_usuario as $publicacion) : ?>
+          <div class="publicacion">
+            <img src="../fotos/<?php echo htmlspecialchars($publicacion['secure_id'] . "." . $publicacion['extension']); ?>" alt="Publicación">
+            <span class="estado">Vendido</span>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>

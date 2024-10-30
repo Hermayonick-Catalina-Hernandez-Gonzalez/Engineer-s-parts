@@ -1,150 +1,148 @@
-body {
+/* Reset de estilo */
+* {
     margin: 0;
     padding: 0;
-    background-color: #ffffff; 
-    font-family: "Times New Roman", serif;
-    overflow: hidden;
+    box-sizing: border-box;
 }
 
-.panel {
-    width: 8cm; 
-    height: 100vh;
-    background: linear-gradient(#C989BB, #7859A6);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1; 
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #ffffff;
 }
 
-.opcion {
-    display: flex;
-    align-items: center;
-    margin: 10px 0; 
-    margin-left: 30px;
-}
-
-.opcion img {
-    width: 35px;
-    height: 35px; 
-    margin-right: 10px; 
-}
-
-.opcion a {
-    color: black; 
-    text-decoration: none;
+/* Barra de navegación */
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    padding: 10px 20px;
+    background-color: #23A199;
+    color: white;
 }
 
-.opcion span {
-    font-size: larger;
-    font-weight: bold;
-    flex-grow: 1;
-    color: black; 
-}
-
-.espacio {
-    margin-bottom: 10px;
-}
-
-#lydch {
-    font-size: 24px;
-    text-align: center;
-    color: black;
-}
-
-
-#perfil {
-    margin-top: auto;
-    margin-bottom: 210px;
-    text-align: center;
-}
-
-#perfil img {
-    width: 60px;
-    height: 60px; 
-}
-.contenedor {
-    background-color: #ffffff; 
-    height: calc(100vh - 210px); 
-    overflow-y: auto; 
-    margin-left: 10cm; 
-}
-
-.encabezado {
-    padding: 20px;
-    background-color: #ffffff; 
+.logo {
     display: flex;
     align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Contenedor principal */
+.contenedor {
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+}
+
+/* Barra de búsqueda */
+.encabezado {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .encabezado input[type="text"] {
-    flex-grow: 1; 
+    flex-grow: 1;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    background-color: #c3c3c3;
     margin-right: 10px;
-    background-color: #c3c3c3; 
 }
 
-.encabezado input[type="text"]:focus {
-    outline: none;
-}
-
-.encabezado button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.boton-buscar img {
-    width: 55px; 
-    height: 55px; 
-}
-
-.perfil-usuario {
-    margin-bottom: 20px; 
-    color: rgb(0, 0, 0);
-    text-decoration: none;
+/* Contenedor de la barra de búsqueda */
+.barra-busqueda {
+    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
 }
 
-.foto-usuario {
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%; 
-    overflow: hidden; 
+.barra-busqueda input[type="text"] {
+    width: 100%;
+    padding: 10px 40px 10px 20px; /* Deja espacio para el ícono */
+    border: none;
+    border-radius: 20px;
+    background-color: #c3c3c3;
 }
 
-.nombre-usuario {
-    font-size: 20px;
-    font-weight: bold; 
-    color: rgb(0, 0, 0);
+.barra-busqueda input[type="text"]:focus {
+    outline: none;
 }
 
+.icono-buscar {
+    position: absolute;
+    right: 15px; /* Posición del ícono dentro de la barra */
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+
+/* Estilo de productos */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.precio {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.descripcion {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Ajustes responsivos */
 @media (max-width: 768px) {
-    .opcion span {
-        display: none;
+    .productos {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 
-    .panel {
-        width: 3cm; /* Ajuste para pantallas pequeñas */
-    }
-
-    .opcion img {
-        width: 30px; 
-        height: 30px;
-    }
-
-    #lydch a img , #perfil img {
-        width: 35px !important; 
-        height: 35px !important;
+    .logo span {
+        font-size: 18px;
     }
 }
