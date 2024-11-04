@@ -1,5 +1,5 @@
 body {
-    background-color: #23A199; /* Color de fondo principal */
+    background-color: #23A199;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,121 +8,113 @@ body {
     padding: 0 32px;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    font-style: italic;
-    font-weight: bolder;
     color: black;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    overflow: hidden;
-    position: relative;
     width: 350px;
-    padding: 20px;
+    padding: 40px 30px;
     border-radius: 15px;
-    background: #fafdfd6b; /* Fondo semi-transparente para la tarjeta */
+    background: rgba(255, 255, 255, 0.25);
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Título */
 h1 {
-    margin: 10px;
+    margin-top: 0;
     font-size: 24px;
     color: black;
+    font-weight: bold;
 }
 
-/* Imagen circular en la tarjeta */
+/* Imagen circular */
 .circ-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.35);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .circ-img img {
-    width: 100%; /* Ajusta el tamaño de la imagen al contenedor */
+    width: 100%;
     height: auto;
 }
 
 /* Campos de ingreso */
 .ingresos {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: black;
-    width: 100%;
 }
 
-/* Texto centrado en los elementos de ingreso */
-.ingresos p {
-    text-align: center;
-    width: 100%;
-}
-
-/* Estilos de texto en etiquetas y enlaces */
-label, a, p {
-    margin: 5px;
-}
-a, a:visited {
-    color: black;
-    text-decoration: none;
-}
-a:hover {
-    color: rgb(32, 32, 32);
-}
-
-/* Estilo de los inputs */
-input {
-    box-sizing: border-box; 
-    width: 100%;
-    height: 35px; 
-    border-radius: 15px;
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 30px);
+    height: 40px;
+    margin-bottom: 15px;
+    padding: 0 10px; 
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(237, 237, 237, 0.6);
     font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.1); 
-    padding: 0 15px;
-    background: rgba(237, 237, 237, 0.6);
     color: rgba(0, 0, 0, 0.8);
-    margin-bottom: 10px;
-    outline: none; 
+    outline: none;
 }
 
-/* Contenedor de botón */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Contenedor del botón */
 .cont-btn {
-    margin: 5px;
-    padding-top: 20px;
     width: 100%;
+    margin-top: 20px;
+    padding: 0;
 }
 
-/* Estilo del botón */
 button {
-    box-sizing: border-box; 
     width: 100%;
-    height: 40px; 
-    border-radius: 15px;
-    font-size: 16px;
-    border: 0px;
-    background-color: #DED4D4; 
+    height: 45px;
+    padding: 0;
+    border-radius: 10px;
+    border: none;
+    background-color: #cac9c9;
     color: black;
-    font-family: Verdana, sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Efecto hover en el botón */
 button:hover {
-    background-color: #395290;
+    background-color: #a9a9a9;
     transform: scale(1.05);
 }
-.registrarse {
-    font-style: italic;
-    font-weight: bolder;
-    color: rgb(50, 63, 235);
+
+/* Texto de registro */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: black;
+}
+
+p a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
 }
 
 /* Ajustes responsivos */
@@ -131,17 +123,7 @@ button:hover {
         width: 90%;
     }
 
-    .ingresos {
-        align-items: center;
-    }
-
     button {
-        width: auto;
-        height: 35px;
         font-size: 14px;
-    }
-
-    .registrarse {
-        font-size: 16px;
     }
 }

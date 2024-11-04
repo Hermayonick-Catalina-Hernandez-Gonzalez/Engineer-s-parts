@@ -49,19 +49,15 @@ function esMayorDeEdad($fechaNacimiento)
 
 <body>
     <div class="card">
-        <h1>Engineer's parts</h1>
         <div class="circ-img">
             <img src="../img/Logo.png" />
         </div>
+        <h1>Engineer's parts</h1>
         <form class="ingresos" action="registrarse.php" method="post" enctype="multipart/form-data">
             <label id="error-label"><?php echo htmlspecialchars($mensaje); ?></label>
-            <label>Username:</label>
             <input type="text" placeholder="Username..." name="username" required>
-            <label>Correo electrónico:</label>
             <input type="email" placeholder="Correo electrónico..." name="correo" required>
-            <label>Contraseña:</label>
             <input type="password" placeholder="Contraseña..." name="password" required>
-            <label>Confirmar Contraseña:</label>
             <input type="password" placeholder="Confirmar contraseña..." name="confirm_password" required>
             <div class="cont-btn">
                 <button type="submit" class="registrar">Registrarse</button>

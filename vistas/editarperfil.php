@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,11 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 </head>
+
 <body>
     <header class="navbar">
         <div class="logo">
-            <img src="../img/Logo.png" alt="Logo">
-            <span>Engineer's parts</span>
+            <a href="../index.php" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                <img src="../img/Logo.png" alt="Logo">
+                <span>Engineer's parts</span>
+            </a>
         </div>
         <nav>
             <a href="../index.php"><span>Inicio</span></a>
@@ -93,16 +97,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form class="ingresos" action="" method="post" enctype="multipart/form-data">
                 <label for="imagen">Cambia tu foto de perfil:</label>
                 <input type="file" name="imagen" id="imagen">
-                
+
                 <label for="username">Nombre Usuario:</label>
                 <input type="text" placeholder="Usuario..." name="username" id="username" required>
-                
+
                 <label for="correo">Correo electrónico:</label>
                 <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" required>
-                
+
                 <label for="password">Contraseña:</label>
                 <input type="password" placeholder="Nueva contraseña..." id="password" name="password">
-                
+
                 <div class="cont-btn">
                     <button type="button" class="salir" onclick="window.location.href = './perfil.php'">Salir</button>
                     <button type="submit" class="guardar">Modificar</button>
@@ -128,4 +132,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </script>
 </body>
+
 </html>
