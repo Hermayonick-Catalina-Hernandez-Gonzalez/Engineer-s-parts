@@ -55,8 +55,10 @@ nav a {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
+/* Dropdown menu */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -88,15 +90,13 @@ nav a {
     display: block;
 }
 
-
-
 /* Contenedor principal */
 .contenedor {
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px); /* Ajuste para restar el tamaño de la barra */
+    height: calc(100vh - 60px);
 }
 
 /* Contenedor de la creación de publicación */
@@ -158,15 +158,21 @@ nav a {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #23A199;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-right: 10px;
 }
 
-.estado, .precio, .descripcion {
+.estado,
+.precio,
+.descripcion {
     width: 100%;
     margin-bottom: 15px;
 }
 
-.estado label, .precio label {
+.estado label,
+.precio label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;

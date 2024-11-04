@@ -1,3 +1,26 @@
+<?php
+require "../php/sesion_requerida.php";
+require "../php/connection.php";
+
+// Obtener el ID del usuario que inició sesión
+$usuario_id = $usuarioID;
+
+// Obtener la información del usuario de la base de datos
+$sql = "SELECT * FROM usuarios WHERE id = ?";
+$stmt = $connection->prepare($sql);
+$stmt->execute([$usuario_id]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Verificar si el usuario tiene una foto de perfil guardada
+if (!empty($usuario['foto_perfil'])) {
+  // Si el campo foto_perfil contiene el nombre de un archivo, cargar desde la carpeta fotos_perfil
+  $imagen_usuario = "../fotos_perfil/" . $usuario['foto_perfil'];
+} else {
+  // Imagen predeterminada si no hay foto de perfil
+  $imagen_usuario = "../img/default_perfil.jpg";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,16 +60,19 @@
       <div class="subir">
         <!-- Vista previa de la imagen -->
         <div class="subir-foto">
-          <div class="foto-preview" onclick="document.getElementById('foto').click();"></div>
-          <input type="file" id="foto" name="foto" accept="image/*" style="display: none;">
+          <div class="foto-preview" onclick="document.getElementById('foto').click();">
+            <img id="preview" src="#" alt="Previsualización de la imagen" style="display: none; width: 100px; height: auto; border-radius: 50%;">
+          </div>
+          <input type="file" id="foto" name="foto" accept="image/*" style="display: none;" onchange="previewImage(event)">
           <button type="button" id="seleccionar-foto">Seleccionar Foto</button>
         </div>
 
         <!-- Información del usuario y detalles del producto -->
         <div class="usuario-publicacion">
           <div class="usuario">
-            <img src="../img/default_perfil.jpg" alt="Foto usuario">
-            <span>Hermayonick</span>
+            <!-- Mostrar la foto de perfil del usuario conectado -->
+            <img src="<?php echo htmlspecialchars($imagen_usuario); ?>" alt="Foto usuario" style="border-radius: 50%; width: 50px; height: 50px;">
+            <span><?php echo htmlspecialchars($usuario['username']); ?></span>
           </div>
           <div class="estado">
             <label>Estado</label>
@@ -65,12 +91,14 @@
       </div>
     </form>
   </div>
+
   <script src="../js/scriptCrear.js"></script>
 
   <script>
     function toggleDropdown() {
       document.getElementById("dropdownMenu").classList.toggle("show");
     }
+
     window.onclick = function(event) {
       if (!event.target.matches('.user-icon img')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -81,6 +109,16 @@
           }
         }
       }
+    }
+
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const preview = document.getElementById("preview");
+        preview.src = reader.result;
+        preview.style.display = "block";
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
   </script>
 </body>
