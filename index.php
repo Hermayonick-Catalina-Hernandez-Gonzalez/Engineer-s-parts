@@ -42,7 +42,12 @@ $stmt->execute([$usuarioID, $usuarioID]);
             <a href="./vistas/crear.php"><span>Crear</span></a>
         </nav>
         <div class="user-icon">
-            <a href="./vistas/perfil.php"><img src="./img/usuario.png" alt="Usuario"></a>
+            <img src="./img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="./vistas/perfil.php">Perfil</a>
+                <a href="./vistas/editarperfil.php">Editar perfil</a>
+                <a href="./php/logout.php">Cerrar sesión</a>
+            </div>
         </div>
     </header>
 

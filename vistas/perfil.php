@@ -71,8 +71,13 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
       <a href="./crear.php">Crear</a>
     </nav>
     <div class="user-icon">
-      <a href="../php/logout.php"><img src="../img/usuario.png" alt="Usuario"></a>
-    </div>
+            <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="../vistas/perfil.php">Perfil</a>
+                <a href="../vistas/editarperfil.php">Editar perfil</a>
+                <a href="../php/logout.php">Cerrar sesión</a>
+            </div>
+        </div>
   </header>
 
   <div class="contenedor">
@@ -103,6 +108,22 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
       </div>
     </div>
   </div>
-</body>
 
+  <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-icon img')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
 </html>

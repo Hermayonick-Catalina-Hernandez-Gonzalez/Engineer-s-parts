@@ -55,18 +55,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
     <link rel="icon" href="../img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/stylesditarperfil.css">
-</head>
 
+
+</head>
 <body>
     <header class="navbar">
         <div class="logo">
@@ -79,23 +78,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="../vistas/crear.php"><span>Crear</span></a>
         </nav>
         <div class="user-icon">
-            <a href="../vistas/perfil.php"><img src="../img/usuario.png" alt="Usuario"></a>
+            <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="../vistas/perfil.php">Perfil</a>
+                <a href="../vistas/editarperfil.php">Editar perfil</a>
+                <a href="../php/logout.php">Cerrar sesión</a>
+            </div>
         </div>
     </header>
 
     <div class="contenedor-editar">
         <div class="card">
             <h1>Editar Perfil</h1>
-            <p><?php if (isset($mensaje)) echo $mensaje; ?></p>
             <form class="ingresos" action="" method="post" enctype="multipart/form-data">
                 <label for="imagen">Cambia tu foto de perfil:</label>
                 <input type="file" name="imagen" id="imagen">
                 
                 <label for="username">Nombre Usuario:</label>
-                <input type="text" placeholder="Usuario..." name="username" id="username" value="<?= htmlspecialchars($result['username']) ?>" required>
+                <input type="text" placeholder="Usuario..." name="username" id="username" required>
                 
                 <label for="correo">Correo electrónico:</label>
-                <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" value="<?= htmlspecialchars($result['email']) ?>" required>
+                <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" required>
                 
                 <label for="password">Contraseña:</label>
                 <input type="password" placeholder="Nueva contraseña..." id="password" name="password">
@@ -107,6 +110,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
-</body>
 
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-icon img')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
 </html>
