@@ -54,19 +54,29 @@ function esMayorDeEdad($fechaNacimiento)
         </div>
         <h1>Engineer's parts</h1>
         <form class="ingresos" action="registrarse.php" method="post" enctype="multipart/form-data">
-            <label id="error-label"><?php echo htmlspecialchars($mensaje); ?></label>
+            <label id="error-label" style="color: red;"><?php echo htmlspecialchars($mensaje); ?></label>
             <input type="text" placeholder="Username..." name="username" required>
             <input type="email" placeholder="Correo electrónico..." name="correo" required>
-            <input type="password" placeholder="Contraseña..." name="password" required>
-            <input type="password" placeholder="Confirmar contraseña..." name="confirm_password" required>
+            <input type="password" placeholder="Contraseña..." name="password" id="password" required>
+            <input type="password" placeholder="Confirmar contraseña..." name="confirm_password" id="confirm_password" required oninput="checkPasswordMatch()">
             <div class="cont-btn">
                 <button type="submit" class="registrar">Registrarse</button>
                 <button type="button" class="salir" onclick="window.location.href = 'login.php'">Regresar</button>
             </div>
         </form>
-
     </div>
 
+    <script>
+        function checkPasswordMatch() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password");
+            if (password === confirmPassword.value) {
+                confirmPassword.style.backgroundColor = "#8db600"; 
+            } else {
+                confirmPassword.style.backgroundColor = "#FE3939"; 
+            }
+        }
+    </script>
 </body>
 
 </html>

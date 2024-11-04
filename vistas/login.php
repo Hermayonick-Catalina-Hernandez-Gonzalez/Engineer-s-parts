@@ -3,23 +3,28 @@ require "../php/login_helper.php";
 
 session_start();
 
-if ($_POST) {
-    $username = filter_input(INPUT_POST, "nombre");
-    $password = filter_input(INPUT_POST, "password");
+$mensaje = "";
 
-    $loggear = autentificar($username, $password);
-    if (!$loggear) {
-        $mensaje = "Usuario o contraseña incorrectos";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+
+    if (empty($username) || empty($password)) {
+        $mensaje = "Por favor, complete todos los campos.";
     } else {
-        $_SESSION["id"] = $loggear["id"];
-        $_SESSION["username"] = $loggear["username"];
-        $_SESSION["email"] = $loggear["email"];
-        $_SESSION["nombre"] = $loggear["nombre"];
-        $_SESSION["apellidos"] = $loggear["apellidos"];
-        $_SESSION["fotoPerfil"] = $loggear["rutaPerfil"];
-        $_SESSION["rol"] = $loggear["rol"]; // Guardar el rol del usuario en la sesión
-        header("Location: ../index.php");
-        exit();
+        $loggear = autentificar($username, $password);
+        if (!$loggear) {
+            $mensaje = "Usuario o contraseña incorrectos";
+        } else {
+            $_SESSION["id"] = $loggear["id"];
+            $_SESSION["username"] = $loggear["username"];
+            $_SESSION["email"] = $loggear["email"];
+            $_SESSION["nombre"] = $loggear["nombre"];
+            $_SESSION["apellidos"] = $loggear["apellidos"];
+            $_SESSION["fotoPerfil"] = $loggear["fotoPerfil"];
+            header("Location: ../index.php");
+            exit();
+        }
     }
 }
 ?>
@@ -43,7 +48,9 @@ if ($_POST) {
         </div>
         <h1>Engineer's parts</h1>
         <form class="ingresos" action="login.php" method="post">
-        
+            <?php if (!empty($mensaje)): ?>
+                <p style="color: red;"><?= htmlspecialchars($mensaje) ?></p>
+            <?php endif; ?>
             <input type="text" placeholder="Usuario..." name="nombre" id="nombre">
             <input type="password" placeholder="Contraseña..." name="password" id="password">
             <div class="cont-btn">
