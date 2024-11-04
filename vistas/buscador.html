@@ -17,7 +17,7 @@
                         document.getElementById("perfil-usuario").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("POST", "../php/buscador_usuarios.php", true);
+                xmlhttp.open("POST", "../php/buscador.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp.send("texto=" + encodeURIComponent(texto));
             } else {

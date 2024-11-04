@@ -35,10 +35,8 @@ if (!empty($usuario['foto_perfil'])) {
 <body>
   <header class="navbar">
     <div class="logo">
-      <a href="../index.php" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
-        <img src="../img/Logo.png" alt="Logo">
-        <span>Engineer's parts</span>
-      </a>
+      <img src="../img/Logo.png" alt="Logo">
+      <span>Engineer's parts</span>
     </div>
     <nav>
       <a href="../index.php"><span>Inicio</span></a>
@@ -46,81 +44,51 @@ if (!empty($usuario['foto_perfil'])) {
       <a href="../vistas/crear.php"><span>Crear</span></a>
     </nav>
     <div class="user-icon">
-      <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
-      <div class="dropdown-content" id="dropdownMenu">
-        <a href="../vistas/perfil.php">Perfil</a>
-        <a href="../vistas/editarperfil.php">Editar perfil</a>
-        <a href="../php/logout.php">Cerrar sesión</a>
-      </div>
+      <a href="../vistas/perfil.php"><img src="../img/usuario.png" alt="Usuario"></a>
     </div>
   </header>
 
   <div class="contenedor">
-    <form action="#" id="formCrear" enctype="multipart/form-data" method="post">
+    <form action="../php/guardar_archivo.php" id="formCrear" enctype="multipart/form-data" method="post">
       <div class="subir">
-        <!-- Vista previa de la imagen -->
         <div class="subir-foto">
-          <div class="foto-preview" onclick="document.getElementById('foto').click();">
-            <img id="preview" src="#" alt="Previsualización de la imagen" style="display: none; width: 100px; height: auto; border-radius: 50%;">
-          </div>
-          <input type="file" id="foto" name="foto" accept="image/*" style="display: none;" onchange="previewImage(event)">
-          <button type="button" id="seleccionar-foto">Seleccionar Foto</button>
+          <input type="file" id="foto" name="foto" accept="image/*" style="display: none;">
+          <div class="foto-preview" onclick="document.getElementById('foto').click();"></div>
+          <button type="button" id="seleccionar-foto">Seleccionar foto</button>
         </div>
 
-        <!-- Información del usuario y detalles del producto -->
         <div class="usuario-publicacion">
           <div class="usuario">
-            <!-- Mostrar la foto de perfil del usuario conectado -->
-            <img src="<?php echo htmlspecialchars($imagen_usuario); ?>" alt="Foto usuario" style="border-radius: 50%; width: 50px; height: 50px;">
+            <img src="<?php echo $imagen_usuario; ?>" alt="Foto usuario">
             <span><?php echo htmlspecialchars($usuario['username']); ?></span>
           </div>
+
+          <div class="nombre input">
+            <label>Nombre del Producto</label>
+            <input type="text" name="nombre_producto" placeholder="Nombre del Producto" required>
+          </div>
+
           <div class="estado">
             <label>Estado</label>
-            <label><input type="radio" name="estado" value="nuevo"> Nuevo</label>
+            <label><input type="radio" name="estado" value="nuevo" required> Nuevo</label>
             <label><input type="radio" name="estado" value="seminuevo"> Seminuevo</label>
             <label><input type="radio" name="estado" value="usado"> Usado</label>
           </div>
 
           <div class="precio">
             <label>Precio</label>
-            <input type="text" placeholder="$">
+            <input type="text" name="precio" placeholder="$" required>
           </div>
-          <textarea class="descripcion" placeholder="Descripción..."></textarea>
+          <textarea class="descripcion" name="descripcion" placeholder="Descripción..."></textarea>
           <button class="publicar" type="submit">Publicar</button>
         </div>
       </div>
     </form>
+
   </div>
 
+  <!-- Incluye el script -->
   <script src="../js/scriptCrear.js"></script>
-
-  <script>
-    function toggleDropdown() {
-      document.getElementById("dropdownMenu").classList.toggle("show");
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.user-icon img')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
-
-    function previewImage(event) {
-      const reader = new FileReader();
-      reader.onload = function() {
-        const preview = document.getElementById("preview");
-        preview.src = reader.result;
-        preview.style.display = "block";
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  </script>
 </body>
 
 </html>

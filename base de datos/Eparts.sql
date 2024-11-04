@@ -27,6 +27,9 @@ CREATE TABLE `fotos` (
   `descripcion` varchar(1024) DEFAULT NULL,
   `fecha_subido` datetime NOT NULL,
   `eliminado` tinyint(1) NOT NULL DEFAULT 0,
+  `nombre_producto` varchar(255) NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
