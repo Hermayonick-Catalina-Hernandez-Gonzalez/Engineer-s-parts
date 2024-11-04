@@ -8,52 +8,59 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$usuarioID]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Variables para precargar los datos en el formulario
+$nombreUsuario = $result['username'] ?? '';
+$correo = $result['email'] ?? '';
+$fotoPerfil = $result['foto_perfil'] ?? null; // Foto de perfil actual
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $fecha_nacimiento = $_POST['fecha-nacimiento'];
-    $genero = $_POST['genero'];
-    $correo = $_POST['correo'];
+    $username = $_POST['username'] ?? '';
+    $correo = $_POST['correo'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
-    // Si el usuario sube una nueva imagen de perfil
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-        // Verificar la extensión del archivo
-        $extension = strtolower(pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION));
-        $extensiones_permitidas = ["jpg", "jpeg", "png", "gif"];
-
-        if (in_array($extension, $extensiones_permitidas)) {
-            // Generar el nombre del archivo con el formato IdUsuario_NombreUsuario.extensión
-            $nuevoNombreArchivo = $usuarioID . "_" . $result['username'] . "." . $extension;
-            $rutaDestino = "../fotos_perfil/" . $nuevoNombreArchivo;
-
-            // Mover la imagen al directorio de destino
-            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-                // Actualizar la base de datos con el nuevo nombre de la imagen
-                $sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, genero = ?, email = ?, foto_perfil = ? WHERE id = ?";
-                $stmt = $connection->prepare($sql);
-                $stmt->execute([$nombre, $apellidos, $fecha_nacimiento, $genero, $correo, $nuevoNombreArchivo, $usuarioID]);
-
-                echo "Perfil actualizado correctamente";
-            } else {
-                echo "Error al subir la imagen.";
-            }
-        } else {
-            echo "Extensión de archivo no permitida.";
-        }
+    // Verificar si las contraseñas coinciden
+    if ($password && $password !== $confirm_password) {
+        echo "<script>alert('Las contraseñas no coinciden.');</script>";
     } else {
-        // Si no se ha subido una imagen, actualizar solo los demás datos
-        $sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, genero = ?, email = ? WHERE id = ?";
+        // Procesar la actualización de la foto de perfil
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+            $extension = strtolower(pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION));
+            $extensiones_permitidas = ["jpg", "jpeg", "png", "gif"];
+
+            if (in_array($extension, $extensiones_permitidas)) {
+                $nuevoNombreArchivo = $usuarioID . "_" . $username . "." . $extension;
+                $rutaDestino = "../fotos_perfil/" . $nuevoNombreArchivo;
+
+                if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+                    $fotoPerfil = $nuevoNombreArchivo;
+                }
+            } else {
+                echo "<script>alert('Formato de archivo no permitido. Por favor, seleccione una imagen.');</script>";
+            }
+        }
+
+        // Construir la consulta de actualización de usuario
+        if ($password) {
+            // Generar Salt y encriptar la nueva contraseña
+            $passwordSalt = bin2hex(random_bytes(32));
+            $passwordEncrypted = hash("sha512", $password . $passwordSalt);
+            $sql = "UPDATE usuarios SET username = ?, email = ?, foto_perfil = ?, password_encrypted = ?, password_salt = ? WHERE id = ?";
+            $params = [$username, $correo, $fotoPerfil, $passwordEncrypted, $passwordSalt, $usuarioID];
+        } else {
+            $sql = "UPDATE usuarios SET username = ?, email = ?, foto_perfil = ? WHERE id = ?";
+            $params = [$username, $correo, $fotoPerfil, $usuarioID];
+        }
+
         $stmt = $connection->prepare($sql);
-        $stmt->execute([$nombre, $apellidos, $fecha_nacimiento, $genero, $correo, $usuarioID]);
+        $stmt->execute($params);
 
-        echo "Perfil actualizado correctamente.";
+        // Redirigir al perfil con un mensaje de éxito
+        echo "<script>alert('Perfil actualizado correctamente.'); window.location.href = '../vistas/perfil.php';</script>";
     }
-
-    // Redirigir al perfil o mostrar mensaje de éxito
-    header("Location: ../vistas/perfil.php");
-    exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -64,8 +71,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Editar Perfil</title>
     <link rel="icon" href="../img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/stylesditarperfil.css">
+    <style>
+        /* Estilo para hacer la imagen de perfil redonda y centrar el texto del botón */
+        #preview {
+            display: block;
+            margin: 0 auto 10px auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #dedede;
+        }
 
+        /* Estilos para el campo de subir archivo */
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
 
+        .file-upload label {
+            cursor: pointer;
+            background-color: #dedede;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .file-upload label:hover {
+            background-color: #a9a9a9;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,17 +140,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card">
             <h1>Editar Perfil</h1>
             <form class="ingresos" action="" method="post" enctype="multipart/form-data">
-                <label for="imagen">Cambia tu foto de perfil:</label>
-                <input type="file" name="imagen" id="imagen">
+                <div class="file-upload">
+                    <input type="file" name="imagen" id="imagen" accept="image/*" onchange="previewImage(event)">
+                    <!-- Vista previa de la imagen en un círculo -->
+                    <img id="preview" src="<?php echo '../fotos_perfil/' . htmlspecialchars($fotoPerfil); ?>" alt="Previsualización de imagen">
+                    <label for="imagen">Cambia tu foto de perfil</label>
+                </div>
 
                 <label for="username">Nombre Usuario:</label>
-                <input type="text" placeholder="Usuario..." name="username" id="username" required>
+                <input type="text" placeholder="Usuario..." name="username" id="username" value="<?php echo htmlspecialchars($nombreUsuario); ?>" required>
 
                 <label for="correo">Correo electrónico:</label>
-                <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" required>
+                <input type="email" placeholder="Correo electrónico..." id="correo" name="correo" value="<?php echo htmlspecialchars($correo); ?>" required>
 
                 <label for="password">Contraseña:</label>
                 <input type="password" placeholder="Nueva contraseña..." id="password" name="password">
+
+                <input type="password" placeholder="Confirmar contraseña..." name="confirm_password" id="confirm_password" oninput="checkPasswordMatch()">
 
                 <div class="cont-btn">
                     <button type="button" class="salir" onclick="window.location.href = './perfil.php'">Salir</button>
@@ -119,16 +170,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function toggleDropdown() {
             document.getElementById("dropdownMenu").classList.toggle("show");
         }
-        window.onclick = function(event) {
-            if (!event.target.matches('.user-icon img')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+
+        function checkPasswordMatch() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password");
+            if (password === confirmPassword.value) {
+                confirmPassword.style.backgroundColor = "#8db600"; // Verde cuando coinciden
+            } else {
+                confirmPassword.style.backgroundColor = "#FE3939"; // Rojo cuando no coinciden
             }
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById("preview");
+                preview.src = reader.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
         }
     </script>
 </body>
