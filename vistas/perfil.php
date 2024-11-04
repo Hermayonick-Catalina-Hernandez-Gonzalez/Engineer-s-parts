@@ -49,6 +49,7 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
 ?>
 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -86,9 +87,9 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
   <div class="contenedor">
     <div class="perfil">
       <div class="foto-usuario">
-        <img src="../img/default_perfil.jpg" alt="Foto de Usuario">
+        <!-- Usar la variable $imagen_usuario para mostrar la imagen dinámica -->
+        <img src="<?php echo htmlspecialchars($imagen_usuario); ?>" alt="Foto de Usuario">
       </div>
-
 
       <div class="info-usuario">
         <div class="nombre-usuario"><?php echo htmlspecialchars($usuario['username']); ?></div>
