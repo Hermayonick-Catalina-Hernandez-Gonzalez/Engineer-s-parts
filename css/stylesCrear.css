@@ -7,14 +7,20 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background-color: #ffffff;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
 }
 
-/* Barra de navegación */
+/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     padding: 10px 20px;
     background-color: #23A199;
     color: white;
@@ -44,7 +50,7 @@ nav a {
     font-weight: bold;
 }
 
-/* Icono de usuario y menú desplegable */
+/* Dropdown menu */
 .user-icon {
     position: relative;
     display: inline-block;
@@ -58,7 +64,6 @@ nav a {
     object-fit: cover;
 }
 
-/* Dropdown menu */
 .dropdown-content {
     display: none;
     position: absolute;
