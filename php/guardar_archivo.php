@@ -48,7 +48,7 @@ if (!in_array($extension, $EXT_ARCHIVOS_FOTOS)) {
 }
 
 $nombreArchivoGuardado = strtoupper(bin2hex(random_bytes(32)));
-$ruta = "C:/xampp/htdocs/xampp/Engineer-s-parts/fotos/" . $nombreArchivoGuardado . "." . $extension;
+$ruta = "C:/xampp/htdocs/xampp/Engineer's parts/fotos/" . $nombreArchivoGuardado . "." . $extension;
 $seGuardo = move_uploaded_file($archivoSubido["tmp_name"], $ruta);
 
 if (!$seGuardo) {

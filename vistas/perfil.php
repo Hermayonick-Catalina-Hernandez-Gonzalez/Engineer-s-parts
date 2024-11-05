@@ -102,7 +102,7 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
                 <?php foreach ($publicaciones_usuario as $publicacion) : ?>
                     <div class="publicacion">
                         <img src="../fotos/<?php echo htmlspecialchars($publicacion['secure_id'] . "." . $publicacion['extension']); ?>" alt="Publicación">
-                        <span class="estado boton-vendido" data-id="<?php echo htmlspecialchars($publicacion['id']); ?>">Vender</span>
+                        <span class="estado boton-vendido" data-id="<?php echo htmlspecialchars($publicacion['id']); ?>">Vendido</span>
                     </div>
                 <?php endforeach; ?>
             </div>
