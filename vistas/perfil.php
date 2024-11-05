@@ -13,7 +13,7 @@ $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!empty($usuario['foto_perfil'])) {
   // Convertir el BLOB en base64 si `foto_perfil` es un campo BLOB
-  $imagen_usuario = 'data:image/jpeg;base64,' . base64_encode($usuario['foto_perfil']);
+  $imagen_usuario = "../fotos_perfil/" . htmlspecialchars($usuario['foto_perfil']);
 } else {
   // Imagen predeterminada si no hay foto de perfil
   $imagen_usuario = "../img/default_perfil.jpg";
