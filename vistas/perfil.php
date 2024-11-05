@@ -11,14 +11,14 @@ $stmt = $connection->prepare($sql);
 $stmt->execute([$usuario_id]);
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Verificar si el usuario tiene una foto de perfil guardada
 if (!empty($usuario['foto_perfil'])) {
-  // Si el campo foto_perfil contiene el nombre de un archivo, cargar desde la carpeta fotos_perfil
-  $imagen_usuario = "../fotos_perfil/" . $usuario['foto_perfil'];
+  // Convertir el BLOB en base64 si `foto_perfil` es un campo BLOB
+  $imagen_usuario = 'data:image/jpeg;base64,' . base64_encode($usuario['foto_perfil']);
 } else {
   // Imagen predeterminada si no hay foto de perfil
-  $imagen_usuario = "../img/default_perfil.png";
+  $imagen_usuario = "../img/default_perfil.jpg";
 }
+
 
 // Consulta para obtener el número de publicaciones
 $sql_publicaciones = "SELECT COUNT(*) AS num_publicaciones FROM fotos WHERE usuario_subio_id = ? AND eliminado = 0";

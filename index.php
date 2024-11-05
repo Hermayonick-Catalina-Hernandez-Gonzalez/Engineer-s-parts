@@ -2,20 +2,17 @@
 require "./php/sesion_requerida.php";
 require "./php/connection.php";
 
-// Consulta para obtener publicaciones de usuarios seguidos junto con sus fotos de perfil
+// Consulta para obtener todas las publicaciones junto con sus fotos de perfil
 $sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil
         FROM fotos_v f
         JOIN usuarios u ON f.usuario_subio_id = u.id
-        WHERE (
-            f.usuario_subio_id = ? OR f.usuario_subio_id IN (
-            SELECT usuario_siguiendo_id
-            FROM seguidores
-            WHERE usuario_seguidor_id = ?)
-        ) AND f.eliminado = 0 
+        WHERE f.eliminado = 0
         ORDER BY f.fecha_subido DESC;";
 
+// Preparar y ejecutar la consulta
 $stmt = $connection->prepare($sql);
-$stmt->execute([$usuarioID, $usuarioID]);
+$stmt->execute();
+
 
 ?>
 
