@@ -9,10 +9,9 @@ $usuario_id = $_SESSION['id'];
 $texto_busqueda = filter_input(INPUT_POST, "texto");
 
 // Inicializar la consulta SQL y los parámetros de vinculación
-$sql = "SELECT * FROM usuarios WHERE (username LIKE :texto OR nombre LIKE :texto) AND id != :usuario_id";
+$sql = "SELECT * FROM fotos WHERE (nombre_producto LIKE :texto)";
 $params = [
-    ':texto' => "%$texto_busqueda%", // Agregar '%' para buscar coincidencias parciales
-    ':usuario_id' => $usuario_id
+    ':texto' => "%$texto_busqueda%"
 ];
 
 // Ejecutar la consulta SQL
@@ -20,27 +19,23 @@ $stmt = $connection->prepare($sql);
 $stmt->execute($params);
 
 if ($stmt->rowCount() > 0) {
-    // Generar el HTML de los resultados
-    echo "<ul>"; // Inicia la lista
+    echo "<div class='grid-container'>"; // Inicia el contenedor de la cuadrícula
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li class='perfil-usuario'>"; // Inicia un elemento de lista
+        $imagen_producto = "../fotos/" . $row['secure_id'] . "." . $row['extension'];
 
-        if (!empty($usuario['foto_perfil'])) {
-            // Convertir el BLOB en base64 si `foto_perfil` es un campo BLOB
-            $imagen_usuario = 'data:image/jpeg;base64,' . base64_encode($usuario['foto_perfil']);
-        } else {
-            // Imagen predeterminada si no hay foto de perfil
-            $imagen_usuario = "../img/default_perfil.jpg";
-        }
+        echo "<div class='grid-item'>"; // Inicia un elemento de cuadrícula
+        echo "<img src='" . $imagen_producto . "' alt='" . htmlspecialchars($row['nombre_producto']) . "'/>";
         
-        // Enlace para abrir el perfil en la misma ventana
-        echo "<a href='perfilBuscado.php?usuario_id=" . $row['id'] . "'>";
-        echo "<span class='nombre-usuario'>" . htmlspecialchars($row['username']) . "</span>";
-        echo "</a>";
-        echo "</li>"; // Cierra el elemento de lista
+        // Mostrar los detalles con etiquetas
+        echo "<div class='detalle'><strong></strong> " . htmlspecialchars($row['nombre_producto']) . "</div>";
+        echo "<div class='detalle'><strong>Precio:</strong> $" . htmlspecialchars($row['precio']) . "</div>";
+        echo "<div class='detalle'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
+        echo "<div class='detalle'><strong>Estado:</strong> " . htmlspecialchars($row['estado']) . "</div>";
+        
+        echo "</div>"; // Cierra el elemento de cuadrícula
     }
-    echo "</ul>"; // Cierra la lista
+    echo "</div>"; // Cierra el contenedor de la cuadrícula
 } else {
-    echo "Perfil no encontrado.";
+    echo "Producto no encontrado.";
 }
 ?>

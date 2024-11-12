@@ -182,3 +182,53 @@ nav a {
         font-size: 18px;
     }
 }
+
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre elementos */
+    padding: 20px;
+}
+
+.grid-item {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.grid-item img {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 300px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Ajusta la imagen para cubrir el espacio sin distorsión */
+    border-radius: 5px; /* Opcional: redondea las esquinas de la imagen */
+}
+
+.nombre-usuario {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+
+.precio {
+    font-weight: bold;
+    color: #4CAF50; /* Color verde para el precio */
+    margin-top: 5px;
+}
+
+.descripcion {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.estado {
+    font-size: 13px;
+    color: #888;
+    margin-top: 5px;
+}
