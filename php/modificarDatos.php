@@ -45,12 +45,12 @@ if (!empty($_FILES) && isset($_FILES["imagen"]) && !empty($_FILES["imagen"]["nam
     $extension = strtolower(end($nombreArchivoParts));
 
     if (in_array($extension, $EXT_ARCHIVOS_FOTOS)) {
-        $ruta = "C:/xampp/htdocs/UPVBOOKS/fotos_perfil/" . $usuarioID . "_" . $nombre . "." . $extension;
+        $ruta = "C:/xampp/htdocs/xampp/Engineer's parts/fotos_perfil/" . $usuarioID . "_" . $nombre . "." . $extension;
 
         // Verificar si el directorio existe
-        if (!file_exists("C:/xampp/htdocs/UPVBOOKS/fotos_perfil/")) {
+        if (!file_exists("C:/xampp/htdocs/xampp/Engineer's parts/fotos_perfil/")) {
             // Crear el directorio si no existe
-            if (!mkdir("C:/xampp/htdocs/UPVBOOKS/fotos_perfil/", 0777, true)) {
+            if (!mkdir("C:/xampp/htdocs/xampp/Engineer's parts/fotos_perfil/", 0777, true)) {
                 $mensaje = "El directorio de fotos no existe y no se pudo crear.";
                 require "../vistas/editarperfil.php";
                 exit();
