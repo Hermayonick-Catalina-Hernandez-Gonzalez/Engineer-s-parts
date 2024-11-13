@@ -1,3 +1,4 @@
+// Mostrar una vista previa de la foto seleccionada
 document.getElementById('foto').addEventListener('change', function (event) {
     const file = event.target.files[0];
     const fotoPreview = document.querySelector('.foto-preview');
@@ -13,13 +14,16 @@ document.getElementById('foto').addEventListener('change', function (event) {
     }
 });
 
+// Activar el clic en el botón de seleccionar foto
 document.getElementById('seleccionar-foto').addEventListener('click', function () {
     document.getElementById('foto').click();
 });
 
+// Validar el envío del formulario y enviar datos mediante fetch
 document.getElementById('formCrear').addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Confirmar si el usuario desea publicar la foto
     if (!confirm("¿Quieres publicar esta foto?")) {
         return false;
     }

@@ -21,10 +21,12 @@ if (!$publicacion) {
     echo "Publicación no encontrada.";
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -143,11 +145,13 @@ if (!$publicacion) {
                                 </div>
 
                                 <!-- Formulario de respuesta -->
-                                <form action="../php/agregar_respuesta.php" method="post" class="reply-form hidden">
+                                <form action="../php/especificosRespuestas.php" method="post" class="reply-form hidden">
                                     <input type="hidden" name="comentario_id" value="<?= $comentario['id'] ?>">
+                                    <input type="hidden" name="foto_id" value="<?= $publicacion_id ?>"> <!-- Asegúrate de incluir este campo -->
                                     <textarea name="respuesta" placeholder="Escribe una respuesta..." required></textarea>
                                     <button type="submit">Responder</button>
                                 </form>
+
                             </div>
                         </div>
                 <?php
@@ -158,7 +162,7 @@ if (!$publicacion) {
                 ?>
 
                 <!-- Formulario para añadir un comentario -->
-                <form action="../php/agregar_comentario.php" method="post" class="comment-form">
+                <form action="../php/especificosComentarios.php" method="post" class="comment-form">
                     <input type="hidden" name="foto_id" value="<?= $publicacion_id ?>">
                     <textarea name="comentario" placeholder="Escribe un comentario..." required></textarea>
                     <button type="submit">Comentar</button>
