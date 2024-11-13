@@ -96,6 +96,7 @@ function toggleReplies(button) {
       button.textContent = 'Ocultar respuestas';
   }
 }
+
 function likePost(fotoId) {
   fetch('./php/like_post.php', {
       method: 'POST',
@@ -115,3 +116,4 @@ function likePost(fotoId) {
   })
   .catch(error => console.error('Error:', error));
 }
+

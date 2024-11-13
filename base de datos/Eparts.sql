@@ -74,17 +74,6 @@ CREATE TABLE `comentarios` (
   FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Creación de la tabla `NOTIFICACIONES`.
-CREATE TABLE notificaciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    tipo VARCHAR(50) NOT NULL, -- Puede ser 'comentario' u otros tipos de notificación
-    mensaje TEXT NOT NULL,
-    visto BOOLEAN DEFAULT FALSE,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
-
 
 -- Creación de la vista `fotos_v`
 CREATE VIEW `fotos_v` AS

@@ -45,6 +45,7 @@ $publicaciones = $stmt->fetchAll();
                 <a href="./vistas/perfil.php">Perfil</a>
                 <a href="./vistas/editarperfil.php">Editar perfil</a>
                 <a href="./php/logout.php">Cerrar sesión</a>
+                <a href="./vistas/inventario.php"><span>Inventario</span></a>
             </div>
         </div>
     </header>
@@ -70,13 +71,10 @@ $publicaciones = $stmt->fetchAll();
                             <img src="fotos/<?= htmlspecialchars($publicacion["secure_id"] . "." . $publicacion["extension"]) ?>" alt="<?= htmlspecialchars($publicacion["nombre_archivo"]) ?>">
                         </div>
                     </div>
-
                     <!-- Área de Me gusta y Contador de Me gusta -->
                     <div class="post-actions">
                         <button class="like-btn" onclick="likePost(<?= $publicacion['id'] ?>)">❤️ Me gusta</button>
                         <span id="likes-count-<?= $publicacion['id'] ?>"><?= $publicacion['likes_count'] ?? 0 ?> Me gusta</span>
-                        <button class="comment-btn" onclick="toggleCommentForm(this)">💬 Comentar</button>
-                    </div>
 
                     <!-- Sección de comentarios visible por defecto -->
                     <div class="comentarios">

@@ -50,7 +50,7 @@ if (!empty($usuario['foto_perfil'])) {
       <div class="dropdown-content" id="dropdownMenu">
         <a href="../vistas/perfil.php">Perfil</a>
         <a href="../vistas/editarperfil.php">Editar perfil</a>
-        <a href="../php/logout.php">Cerrar sesión</a> 
+        <a href="../php/logout.php">Cerrar sesión</a>
       </div>
     </div>
   </header>
