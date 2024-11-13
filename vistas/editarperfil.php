@@ -125,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="../index.php"><span>Inicio</span></a>
             <a href="../vistas/buscador.html"><span>Buscador</span></a>
             <a href="../vistas/crear.php"><span>Crear</span></a>
+            <a href="../vistas/inventario.php"><span>Inventario</span></a>
         </nav>
         <div class="user-icon">
             <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">

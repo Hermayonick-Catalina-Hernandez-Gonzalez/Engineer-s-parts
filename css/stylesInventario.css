@@ -1,0 +1,103 @@
+/* Título de la página */
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Contenedor de la tabla */
+.tabla-contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Estilo de la tabla */
+table.display {
+    width: 100%;  /* La tabla ocupará el 100% del contenedor */
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.dataTables_wrapper .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+table.dataTable thead th {
+    background-color: #23A199;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+table.dataTable tbody td {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+table.dataTable tbody tr {
+    background-color: #f8f8f8;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #e0f7fa;
+}
+
+/* Estilo para botones y enlaces de DataTables */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #23A199;
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 2px;
+    text-decoration: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #1b8073;
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    nav a {
+        font-size: 14px;
+        margin: 0 10px;
+    }
+}
+
+/* Estilo para la columna de acciones */
+.accion {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.eliminar {
+    color: red;
+}
+
+.devolver {
+    color: blue;
+}
+
+.accion:hover {
+    text-decoration: underline;
+}

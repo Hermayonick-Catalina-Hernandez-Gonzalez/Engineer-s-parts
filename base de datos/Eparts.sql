@@ -30,6 +30,7 @@ CREATE TABLE `fotos` (
   `nombre_producto` varchar(255) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'En venta',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -53,6 +54,8 @@ CREATE TABLE seguidores (
 );
 
 -- Creación de la vista `fotos_v`
+DROP VIEW IF EXISTS `fotos_v`;
+
 CREATE VIEW `fotos_v` AS
 SELECT
   `fotos`.`id`,
@@ -67,7 +70,8 @@ SELECT
   `fotos`.`usuario_subio_id` AS `user_id`,
   `usuarios`.`foto_perfil`,
   `usuarios`.`username`,
-  `usuarios`.`email`
+  `usuarios`.`email`,
+  `fotos`.`status` 
 FROM `fotos`
 LEFT JOIN `usuarios` ON `fotos`.`usuario_subio_id` = `usuarios`.`id`
 WHERE `fotos`.`eliminado` = 0;
