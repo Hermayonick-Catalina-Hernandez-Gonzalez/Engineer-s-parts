@@ -71,6 +71,7 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
             <a href="../index.php">Inicio</a>
             <a href="./buscador.html">Buscador</a>
             <a href="./crear.php">Crear</a>
+            <a href="../vistas/inventario.php"><span>Inventario</span></a>
         </nav>
         <div class="user-icon">
             <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
@@ -102,7 +103,10 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
                 <?php foreach ($publicaciones_usuario as $publicacion) : ?>
                     <div class="publicacion">
                         <img src="../fotos/<?php echo htmlspecialchars($publicacion['secure_id'] . "." . $publicacion['extension']); ?>" alt="Publicación">
-                        <span class="estado boton-vendido" data-id="<?php echo htmlspecialchars($publicacion['id']); ?>">Vendido</span>
+                        <!-- Daniel Ledezma -->
+                        <span class="estado boton-vendido" data-id="<?php echo htmlspecialchars($publicacion['id']); ?>">
+                            <?php echo htmlspecialchars($publicacion['status'] === 'Vendido' ? 'Vendido' : 'En venta'); ?>
+                        </span>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -128,31 +132,39 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        // Daniel Ledezma
         $(document).on('click', '.boton-vendido', function() {
             var publicacionId = $(this).data('id');
             var botonVendido = $(this);
 
-            $.ajax({
-                url: '../php/marcar_vendido.php',
-                type: 'POST',
-                data: { id: publicacionId },
-                success: function(response) {
-                    if (response === 'success') {
-                        botonVendido.text('Vendido');
-                        botonVendido.css('background-color', '#ccc');
-                        botonVendido.off('click');
-
-                        botonVendido.closest('.publicacion').fadeOut(300, function() {
-                            $(this).remove();
-                        });
-                    } else {
-                        alert('Error al marcar como vendido: ' + response);
+            // Verificar si el estado ya es "Vendido"
+            if (botonVendido.text().trim() === 'Vendido') {
+                alert("Esta publicación ya ha sido vendida.");
+                return; // No permite realizar ninguna acción si ya está vendida
+            }
+            // Mostrar una alerta de confirmación antes de marcar como vendido
+            var confirmacion = confirm("¿Deseas marcar como vendido?");
+            if (confirmacion) {
+                // Si el usuario selecciona "Sí", procede con la solicitud AJAX
+                $.ajax({
+                    url: '../php/marcar_vendido.php',
+                    type: 'POST',
+                    data: {
+                        id: publicacionId
+                    },
+                    success: function(response) {
+                        if (response === 'success') {
+                            // Refrescar la página después de marcar como vendido
+                            location.reload();
+                        } else {
+                            alert('Error al marcar como vendido: ' + response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error de AJAX: ' + error);
                     }
-                },
-                error: function(xhr, status, error) {
-                    alert('Error de AJAX: ' + error);
-                }
-            });
+                });
+            }
         });
     </script>
 

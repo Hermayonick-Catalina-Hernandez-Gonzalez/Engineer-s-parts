@@ -59,8 +59,8 @@ if (!$seGuardo) {
 
 $fechaSubido = $now->format("Y-m-d H:i:s");
 
-$sqlCmd = "INSERT INTO fotos (secure_id, extension, usuario_subio_id, nombre_archivo, tamaño, descripcion, fecha_subido, nombre_producto, estado, precio) 
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sqlCmd = "INSERT INTO fotos (secure_id, extension, usuario_subio_id, nombre_archivo, tamaño, descripcion, fecha_subido, nombre_producto, estado, precio, status) 
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'En venta')";
 $sqlParam = [
     $nombreArchivoGuardado,
     $extension,

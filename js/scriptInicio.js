@@ -66,3 +66,33 @@ window.onclick = function(event) {
       }
   }
 }
+function toggleCommentForm(button) {
+  // Obtener el contenedor de la publicación
+  const postContainer = button.closest('.publicacion');
+  // Encontrar el formulario de comentarios dentro de este contenedor
+  const commentForm = postContainer.querySelector('.comment-form');
+  
+  // Alternar la clase hidden para mostrar/ocultar el formulario
+  commentForm.classList.toggle('hidden');
+}
+
+function toggleReplyForm(button) {
+  // Obtener el contenedor del comentario más cercano
+  const commentContainer = button.closest('.comentario');
+  // Encontrar el formulario de respuesta dentro de este contenedor
+  const replyForm = commentContainer.querySelector('.reply-form');
+
+  // Alternar la clase hidden para mostrar/ocultar el formulario
+  replyForm.classList.toggle('hidden');
+}
+function toggleReplies(button) {
+  const repliesContainer = button.previousElementSibling; // El contenedor de respuestas está justo antes del botón
+  repliesContainer.classList.toggle('hidden');
+
+  // Cambiar el texto del botón según el estado de visibilidad
+  if (repliesContainer.classList.contains('hidden')) {
+      button.textContent = 'Mostrar respuestas';
+  } else {
+      button.textContent = 'Ocultar respuestas';
+  }
+}

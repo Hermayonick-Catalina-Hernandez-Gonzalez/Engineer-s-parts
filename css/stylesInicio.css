@@ -150,6 +150,237 @@ nav a {
     border-radius: 8px;
 }
 
+/* Área de Me gusta y Comentar */
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.like-btn, .comment-btn {
+    background: none;
+    border: none;
+    color: #1877f2;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.like-btn:hover, .comment-btn:hover {
+    text-decoration: underline;
+}
+
+/* Comentarios */
+
+.hidden {
+    display: none;
+}
+
+.comment-form {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: max-height 0.3s ease-out;
+}
+
+.comentarios {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.comentarios h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.comentario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Imagen de perfil en los comentarios */
+.profile-pic-comment {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+} 
+
+/* Contenido del comentario */
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+}
+
+.comment-content strong {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #000;
+}
+
+/* Contenido para hacer el comentario */
+.comentario {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+form button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #23A199;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #1b756f;
+}
+
+.comentarios {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.comentario {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comentario p {
+    margin: 5px 0;
+}
+
+.comentario small {
+    color: #777;
+}
+
+.reply-btn {
+    background: none;
+    border: none;
+    color: #23A199;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.reply-btn:hover {
+    text-decoration: underline;
+}
+
+/* Meta información (fecha y botón de responder) en nueva línea */
+.comment-meta {
+    display: flex;
+    gap: 15px;
+    margin-top: 3px;
+    font-size: 12px;
+    color: #777;
+}
+
+.comment-meta small {
+    font-size: 12px;
+    color: #777;
+}
+
+.comment-meta .reply-btn {
+    background: none;
+    border: none;
+    color: #23A199;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+}
+
+.comment-meta .reply-btn:hover {
+    text-decoration: underline;
+}
+
+/* Formulario de respuesta oculto inicialmente */
+.reply-form.hidden {
+    display: none;
+}
+
+.reply-form {
+    display: flex;
+    margin-top: 5px;
+}
+
+.reply-form input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+}
+
+.reply-form button {
+    padding: 5px 10px;
+    background-color: #23A199;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reply-form button:hover {
+    background-color: #1b756f;
+}
+
+.replies {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #ddd;
+}
+
+.respuesta {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.profile-pic-reply {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.toggle-replies-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.toggle-replies-btn:hover {
+    text-decoration: underline;
+}
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .publicacion {
