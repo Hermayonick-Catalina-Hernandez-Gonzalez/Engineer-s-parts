@@ -25,12 +25,17 @@ if ($stmt->rowCount() > 0) {
     echo "<div class='grid-container'>"; // Inicia el contenedor de la cuadrícula
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $imagen_producto = "../fotos/" . $row['secure_id'] . "." . $row['extension'];
+        $publicacion_url = "../vistas/publicaciones_especifica.php?id=" . $row['id'];
 
         echo "<div class='grid-item'>"; // Inicia un elemento de cuadrícula
-        echo "<img src='" . $imagen_producto . "' alt='" . htmlspecialchars($row['nombre_producto']) . "'/>";
+
+        // Enlace en la imagen
+        echo "<a href='" . $publicacion_url . "'><img src='" . $imagen_producto . "' alt='" . htmlspecialchars($row['nombre_producto']) . "'/></a>";
         
-        // Mostrar los detalles con etiquetas
-        echo "<div class='detalle'><strong>Producto:</strong> " . htmlspecialchars($row['nombre_producto']) . "</div>";
+        // Enlace en el nombre del producto
+        echo "<div class='detalle'><strong>Producto:</strong> <a href='" . $publicacion_url . "'>" . htmlspecialchars($row['nombre_producto']) . "</a></div>";
+        
+        // Detalles adicionales (sin enlace)
         echo "<div class='detalle'><strong>Precio:</strong> $" . htmlspecialchars($row['precio']) . "</div>";
         echo "<div class='detalle'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
         echo "<div class='detalle'><strong>Estado:</strong> " . htmlspecialchars($row['estado']) . "</div>";

@@ -1,0 +1,403 @@
+/* Reset de estilo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #23A199;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Dropdown menu */
+.user-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+/* Contenedor de publicaciones */
+.usuario-publicacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.publicacion {
+    width: 1000px; 
+    max-width: 2000px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.nombre {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nombre img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nombre span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.publicacion p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.foto-publicacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.foto-publicacion img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Área de Me gusta y Comentar */
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.like-btn, .comment-btn {
+    background: none;
+    border: none;
+    color: #1877f2;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.like-btn:hover, .comment-btn:hover {
+    text-decoration: underline;
+}
+
+/* Comentarios */
+
+.hidden {
+    display: none;
+}
+
+.comment-form {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: max-height 0.3s ease-out;
+}
+
+.comentarios {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.comentarios h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.comentario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Imagen de perfil en los comentarios */
+.profile-pic-comment {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+} 
+
+/* Contenido del comentario */
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+}
+
+.comment-content strong {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #000;
+}
+
+/* Contenido para hacer el comentario */
+.comentario {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+form button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #23A199;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #1b756f;
+}
+
+.comentarios {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.comentario {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comentario p {
+    margin: 5px 0;
+}
+
+.comentario small {
+    color: #777;
+}
+
+.reply-btn {
+    background: none;
+    border: none;
+    color: #23A199;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.reply-btn:hover {
+    text-decoration: underline;
+}
+
+/* Meta información (fecha y botón de responder) en nueva línea */
+.comment-meta {
+    display: flex;
+    gap: 15px;
+    margin-top: 3px;
+    font-size: 12px;
+    color: #777;
+}
+
+.comment-meta small {
+    font-size: 12px;
+    color: #777;
+}
+
+.comment-meta .reply-btn {
+    background: none;
+    border: none;
+    color: #23A199;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+}
+
+.comment-meta .reply-btn:hover {
+    text-decoration: underline;
+}
+
+/* Formulario de respuesta oculto inicialmente */
+.reply-form.hidden {
+    display: none;
+}
+
+.reply-form {
+    display: flex;
+    margin-top: 5px;
+}
+
+.reply-form input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+}
+
+.reply-form button {
+    padding: 5px 10px;
+    background-color: #23A199;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reply-form button:hover {
+    background-color: #1b756f;
+}
+
+.replies {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #ddd;
+}
+
+.respuesta {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.profile-pic-reply {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.toggle-replies-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.toggle-replies-btn:hover {
+    text-decoration: underline;
+}
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .publicacion {
+        width: 90%;
+    }
+
+    nav a {
+        font-size: 14px;
+        margin: 0 10px;
+    }
+
+    .nombre img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo span {
+        font-size: 18px;
+    }
+}

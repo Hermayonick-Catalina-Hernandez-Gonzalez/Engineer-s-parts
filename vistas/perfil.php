@@ -26,19 +26,6 @@ $stmt_publicaciones->execute([$usuario_id]);
 $resultado_publicaciones = $stmt_publicaciones->fetch(PDO::FETCH_ASSOC);
 $num_publicaciones = $resultado_publicaciones['num_publicaciones'];
 
-// Consulta para obtener el número de seguidores
-$sql_seguidores = "SELECT COUNT(*) AS num_seguidores FROM seguidores WHERE usuario_siguiendo_id = ? AND eliminado = 0";
-$stmt_seguidores = $connection->prepare($sql_seguidores);
-$stmt_seguidores->execute([$usuario_id]);
-$resultado_seguidores = $stmt_seguidores->fetch(PDO::FETCH_ASSOC);
-$num_seguidores = $resultado_seguidores['num_seguidores'];
-
-// Consulta para obtener el número de seguidos
-$sql_seguidos = "SELECT COUNT(*) AS num_seguidos FROM seguidores WHERE usuario_seguidor_id = ? AND eliminado = 0";
-$stmt_seguidos = $connection->prepare($sql_seguidos);
-$stmt_seguidos->execute([$usuario_id]);
-$resultado_seguidos = $stmt_seguidos->fetch(PDO::FETCH_ASSOC);
-$num_seguidos = $resultado_seguidos['num_seguidos'];
 
 // Consulta para obtener las publicaciones del usuario
 $sql_publicaciones_usuario = "SELECT * FROM fotos WHERE usuario_subio_id = ? AND eliminado = 0";

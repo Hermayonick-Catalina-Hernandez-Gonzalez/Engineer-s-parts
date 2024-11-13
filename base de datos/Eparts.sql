@@ -44,15 +44,6 @@ CREATE TABLE `fotos_likes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Creación de la tabla `seguidores`
-CREATE TABLE seguidores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_seguidor_id INT NOT NULL,
-    usuario_siguiendo_id INT NOT NULL,
-    fecha_hora DATETIME NOT NULL,
-    eliminado TINYINT(1) DEFAULT 0
-);
-
 -- Creación de la tabla `Respuestas`.
 CREATE TABLE respuestas (
     id INT AUTO_INCREMENT PRIMARY KEY,

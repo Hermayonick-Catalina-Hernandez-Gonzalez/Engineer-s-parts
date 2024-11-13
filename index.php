@@ -2,12 +2,12 @@
 require "./php/sesion_requerida.php";
 require "./php/connection.php";
 
-// Consulta para obtener todas las publicaciones junto con sus fotos de perfil y el conteo de "me gusta"
+// Consulta para obtener todas las publicaciones que no están vendidas junto con sus fotos de perfil y el conteo de "me gusta"
 $sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil,
                (SELECT COUNT(*) FROM fotos_likes fl WHERE fl.foto_id = f.id) as likes_count
         FROM fotos_v f
         JOIN usuarios u ON f.usuario_subio_id = u.id
-        WHERE f.eliminado = 0
+        WHERE f.eliminado = 0 AND f.status = 'En venta'
         ORDER BY f.fecha_subido DESC;";
 
 // Preparar y ejecutar la consulta
@@ -106,45 +106,6 @@ $publicaciones = $stmt->fetchAll();
                                             <small><?= htmlspecialchars($comentario['fecha']) ?></small>
                                             <button class="reply-btn" onclick="toggleReplyForm(this)">Responder</button>
                                         </div>
-                                        <!-- Respuestas anidadas -->
-                                        <div class="replies hidden"> <!-- Oculto inicialmente -->
-                                            <?php
-                                            // Consultar respuestas
-                                            $sqlRespuestas = "SELECT r.respuesta, r.fecha, u.username as usuario_respuesta, u.foto_perfil
-                                          FROM respuestas r 
-                                          JOIN usuarios u ON r.usuario_id = u.id 
-                                          WHERE r.comentario_id = :comentario_id
-                                          ORDER BY r.fecha ASC";
-                                            $stmtRespuestas = $connection->prepare($sqlRespuestas);
-                                            $stmtRespuestas->bindParam(':comentario_id', $comentario['id']);
-                                            $stmtRespuestas->execute();
-                                            $respuestas = $stmtRespuestas->fetchAll();
-
-                                            if (!empty($respuestas)) {
-                                                foreach ($respuestas as $respuesta) {
-                                                    $fotoRespuesta = (!empty($respuesta['foto_perfil']))
-                                                        ? './fotos_perfil/' . $respuesta['foto_perfil']
-                                                        : './fotos_perfil/default.png';
-                                            ?>
-                                                    <div class="respuesta">
-                                                        <img src="<?= $fotoRespuesta ?>" alt="Perfil" class="profile-pic-reply">
-                                                        <strong><?= htmlspecialchars($respuesta['usuario_respuesta']) ?></strong> <?= htmlspecialchars($respuesta['respuesta']) ?>
-                                                        <small><?= htmlspecialchars($respuesta['fecha']) ?></small>
-                                                    </div>
-                                            <?php
-                                                }
-                                            } else {
-                                                echo "<p>No hay respuestas aún.</p>";
-                                            }
-                                            ?>
-                                        </div>
-                                        <button class="toggle-replies-btn" onclick="toggleReplies(this)">Mostrar respuestas</button>
-                                        <!-- Formulario de respuesta oculto inicialmente -->
-                                        <form action="./php/agregar_respuesta.php" method="post" class="reply-form hidden">
-                                            <input type="hidden" name="comentario_id" value="<?= $comentario['id'] ?>">
-                                            <textarea name="respuesta" placeholder="Escribe una respuesta..." required></textarea>
-                                            <button type="submit">Responder</button>
-                                        </form>
                                     </div>
                                 </div>
                         <?php
