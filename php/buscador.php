@@ -1,6 +1,6 @@
 <?php
-require "../php/sesion_requerida.php";
-require "../php/connection.php";
+require "../php/sesion_requerida.php"; // Verificar que el usuario haya iniciado sesión antes de continuar
+require "../php/connection.php"; // Conexión con la base de datos
 
 // Obtener el ID del usuario actual
 $usuario_id = $_SESSION['id'];
@@ -9,6 +9,9 @@ $usuario_id = $_SESSION['id'];
 $texto_busqueda = filter_input(INPUT_POST, "texto", FILTER_SANITIZE_STRING);
 
 // Construir la consulta SQL, mostrando todos los productos si no hay texto de búsqueda
+// Consulta SQL de búsqueda
+// Se busca cualquier coincidencia en la columna "nombre_producto" de la tabla "fotos"
+// utilizando el texto ingresado por el usuario como filtro
 if (!empty($texto_busqueda)) {
     $sql = "SELECT * FROM fotos WHERE nombre_producto LIKE :texto";
     $params = [':texto' => "%$texto_busqueda%"];
@@ -21,9 +24,12 @@ if (!empty($texto_busqueda)) {
 $stmt = $connection->prepare($sql);
 $stmt->execute($params);
 
+// Si inicia verificando si la consulta regreso algo
 if ($stmt->rowCount() > 0) {
-    echo "<div class='grid-container'>"; // Inicia el contenedor de la cuadrícula
+    echo "<div class='grid-container'>";// Contenedor de la cuadrícula donde mostraré los productos encontrados
+     // Recorrer cada fila de resultados para mostrar la información del producto
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // La ruta de la imagen del producto usando el secure_id y la extensión de la imagen desde la base de datos
         $imagen_producto = "../fotos/" . $row['secure_id'] . "." . $row['extension'];
         $publicacion_url = "../vistas/publicaciones_especifica.php?id=" . $row['id'];
 
