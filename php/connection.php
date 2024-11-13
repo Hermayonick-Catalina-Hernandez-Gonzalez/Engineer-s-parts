@@ -1,7 +1,7 @@
 <?php
 $nombreServidor = "localhost";
 $userBD = "root";
-$password = "D4n13l2003";
+$password = "";
 $nombreBD = "Eparts";
 
 try {
