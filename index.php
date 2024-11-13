@@ -71,6 +71,7 @@ $publicaciones = $stmt->fetchAll();
                             <img src="fotos/<?= htmlspecialchars($publicacion["secure_id"] . "." . $publicacion["extension"]) ?>" alt="<?= htmlspecialchars($publicacion["nombre_archivo"]) ?>">
                         </div>
                     </div>
+                    
                     <!-- Área de Me gusta y Contador de Me gusta -->
                     <div class="post-actions">
                         <button class="like-btn" onclick="likePost(<?= $publicacion['id'] ?>)">❤️ Me gusta</button>
