@@ -30,11 +30,7 @@ CREATE TABLE `fotos` (
   `nombre_producto` varchar(255) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-<<<<<<< HEAD
-  `status` varchar(20) NOT NULL DEFAULT 'En venta',
-=======
     `status` varchar(20) NOT NULL DEFAULT 'En venta',
->>>>>>> 11b1403 (Todo junto)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -79,8 +75,6 @@ CREATE TABLE `comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Creación de la vista `fotos_v`
-DROP VIEW IF EXISTS `fotos_v`;
-
 CREATE VIEW `fotos_v` AS
 SELECT
   `fotos`.`id`,
@@ -96,7 +90,8 @@ SELECT
   `usuarios`.`foto_perfil`,
   `usuarios`.`username`,
   `usuarios`.`email`,
-  `fotos`.`status` 
+  `fotos`.`status`,
+  `fotos`.`precio` 
 FROM `fotos`
 LEFT JOIN `usuarios` ON `fotos`.`usuario_subio_id` = `usuarios`.`id`
 WHERE `fotos`.`eliminado` = 0;

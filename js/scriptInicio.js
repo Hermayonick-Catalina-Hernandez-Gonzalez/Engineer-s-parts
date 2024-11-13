@@ -96,3 +96,22 @@ function toggleReplies(button) {
       button.textContent = 'Ocultar respuestas';
   }
 }
+function likePost(fotoId) {
+  fetch('./php/like_post.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ foto_id: fotoId })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          // Actualiza el contador de "me gusta" en la interfaz
+          document.getElementById(`likes-count-${fotoId}`).innerText = `❤️ ${data.likes_count} Me gusta`;
+      } else {
+          alert('Error al dar "me gusta".');
+      }
+  })
+  .catch(error => console.error('Error:', error));
+}
