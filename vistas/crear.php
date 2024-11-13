@@ -18,7 +18,7 @@ if (!empty($usuario['foto_perfil'])) {
     $imagen_usuario = "../fotos_perfil/" . htmlspecialchars($usuario['foto_perfil']);
 } else {
     // Imagen predeterminada en caso de que no tenga foto de perfil
-    $imagen_usuario = "../img/default_perfil.jpg";
+    $imagen_usuario = "../fotos_perfil/perfil.png";
 }
 ?>
 

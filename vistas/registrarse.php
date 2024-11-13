@@ -11,7 +11,7 @@ if ($_POST) {
     $confirm_password = filter_input(INPUT_POST, "confirm_password", FILTER_SANITIZE_STRING);
 
     // Ruta de la foto de perfil predeterminada
-    $fotoPerfil = '../img/default_perfil.jpg';
+    $fotoPerfil = '../fotos_perfil/perfil.png';
     // Asegúrate de que las contraseñas coincidan
     if ($password != $confirm_password) {
         $mensaje = "Las contraseñas no coinciden.";
