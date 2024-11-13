@@ -2,9 +2,8 @@
 require "./php/sesion_requerida.php";
 require "./php/connection.php";
 
-// Consulta para obtener todas las publicaciones junto con sus fotos de perfil y el conteo de "me gusta"
-$sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil,
-               (SELECT COUNT(*) FROM fotos_likes fl WHERE fl.foto_id = f.id) as likes_count
+// Consulta para obtener todas las publicaciones junto con sus fotos de perfil
+$sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil
         FROM fotos_v f
         JOIN usuarios u ON f.usuario_subio_id = u.id
         WHERE f.eliminado = 0
@@ -13,6 +12,7 @@ $sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil,
 // Preparar y ejecutar la consulta
 $stmt = $connection->prepare($sql);
 $stmt->execute();
+
 // Verificar si se obtuvieron resultados y almacenarlos en $publicaciones
 $publicaciones = $stmt->fetchAll();
 ?>
@@ -60,9 +60,10 @@ $publicaciones = $stmt->fetchAll();
                     <div class="info-usuario">
                         <div class="nombre">
                             <img src="<?= $fotoPerfil ?>" alt="Perfil" style="width: 60px; height: 60px;">
-                            <span><?= htmlspecialchars($publicacion["usuario_subio_username"]) ?></span>
+                            <span>
+                                <?= isset($publicacion["usuario_subio_username"]) ? htmlspecialchars($publicacion["usuario_subio_username"]) : 'Usuario desconocido'; ?>
+                            </span>
                         </div>
-                        <p><strong>Precio:</strong> $<?= number_format($publicacion["precio"] ?? 0, 2) ?></p>
                         <p><?= htmlspecialchars($publicacion["descripcion"]) ?></p>
 
                         <div class="foto-publicacion">
@@ -77,14 +78,14 @@ $publicaciones = $stmt->fetchAll();
                         <button class="comment-btn" onclick="toggleCommentForm(this)">💬 Comentar</button>
                     </div>
 
-                    <!-- Sección de comentarios -->
+                    <!-- Sección de comentarios visible por defecto -->
                     <div class="comentarios">
                         <?php
                         $sqlComentarios = "SELECT c.id, c.comentario, c.fecha, u.username as usuario_comentario, u.foto_perfil
-                       FROM comentarios c 
-                       JOIN usuarios u ON c.usuario_id = u.id 
-                       WHERE c.foto_id = :foto_id
-                       ORDER BY c.fecha ASC";
+                                       FROM comentarios c 
+                                       JOIN usuarios u ON c.usuario_id = u.id 
+                                       WHERE c.foto_id = :foto_id
+                                       ORDER BY c.fecha ASC";
                         $stmtComentarios = $connection->prepare($sqlComentarios);
                         $stmtComentarios->bindParam(':foto_id', $publicacion['id']);
                         $stmtComentarios->execute();
@@ -111,10 +112,10 @@ $publicaciones = $stmt->fetchAll();
                                             <?php
                                             // Consultar respuestas
                                             $sqlRespuestas = "SELECT r.respuesta, r.fecha, u.username as usuario_respuesta, u.foto_perfil
-                                          FROM respuestas r 
-                                          JOIN usuarios u ON r.usuario_id = u.id 
-                                          WHERE r.comentario_id = :comentario_id
-                                          ORDER BY r.fecha ASC";
+                                                              FROM respuestas r 
+                                                              JOIN usuarios u ON r.usuario_id = u.id 
+                                                              WHERE r.comentario_id = :comentario_id
+                                                              ORDER BY r.fecha ASC";
                                             $stmtRespuestas = $connection->prepare($sqlRespuestas);
                                             $stmtRespuestas->bindParam(':comentario_id', $comentario['id']);
                                             $stmtRespuestas->execute();
@@ -161,16 +162,15 @@ $publicaciones = $stmt->fetchAll();
                         <textarea name="comentario" placeholder="Escribe un comentario..." required></textarea>
                         <button type="submit">Comentar</button>
                     </form>
-                </div> <!-- Cierre de .publicacion -->
+                </div>
         <?php
             }
         } else {
             echo "<p>No hay publicaciones disponibles.</p>";
         }
         ?>
-    </div> <!-- Cierre de .usuario-publicacion -->
+    </div>
     <script src="./js/scriptInicio.js"></script>
-
 </body>
 
 </html>

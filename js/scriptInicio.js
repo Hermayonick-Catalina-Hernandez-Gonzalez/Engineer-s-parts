@@ -108,7 +108,7 @@ function likePost(fotoId) {
   .then(data => {
       if (data.success) {
           // Actualiza el contador de "me gusta" en la interfaz
-          document.getElementById(`likes-count-${fotoId}`).innerText = ` ${data.likes_count} Me gusta`;
+          document.getElementById(`likes-count-${fotoId}`).innerText = `${data.likes_count} Me gusta`;
       } else {
           alert('Error al dar "me gusta".');
       }
