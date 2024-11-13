@@ -48,7 +48,7 @@ if (!in_array($extension, $EXT_ARCHIVOS_FOTOS)) {
 }
 
 $nombreArchivoGuardado = strtoupper(bin2hex(random_bytes(32)));
-$ruta = "C:/xampp/htdocs/php/Engineer-s-parts/fotos/" . $nombreArchivoGuardado . "." . $extension;
+$ruta = "C:/xampp/htdocs/xampp/Engineer's parts/fotos/" . $nombreArchivoGuardado . "." . $extension;
 $seGuardo = move_uploaded_file($archivoSubido["tmp_name"], $ruta);
 
 if (!$seGuardo) {
@@ -59,7 +59,6 @@ if (!$seGuardo) {
 
 $fechaSubido = $now->format("Y-m-d H:i:s");
 
-//DANIEL LEDEZMA: MODIFICO CONSULTA
 $sqlCmd = "INSERT INTO fotos (secure_id, extension, usuario_subio_id, nombre_archivo, tamaño, descripcion, fecha_subido, nombre_producto, estado, precio, status) 
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'En venta')";
 $sqlParam = [

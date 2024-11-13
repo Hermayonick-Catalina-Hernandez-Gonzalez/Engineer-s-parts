@@ -71,7 +71,11 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
             <a href="../index.php">Inicio</a>
             <a href="./buscador.html">Buscador</a>
             <a href="./crear.php">Crear</a>
+<<<<<<< HEAD
             <a href="./inventario.php">Inventario</a>
+=======
+            <a href="../vistas/inventario.php"><span>Inventario</span></a>
+>>>>>>> 11b1403 (Todo junto)
         </nav>
         <div class="user-icon">
             <img src="../img/usuario.png" alt="Usuario" onclick="toggleDropdown()">
@@ -142,7 +146,10 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
                 alert("Esta publicación ya ha sido vendida.");
                 return; // No permite realizar ninguna acción si ya está vendida
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
             // Mostrar una alerta de confirmación antes de marcar como vendido
             var confirmacion = confirm("¿Deseas marcar como vendido?");
             if (confirmacion) {
@@ -150,7 +157,13 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
                 $.ajax({
                     url: '../php/marcar_vendido.php',
                     type: 'POST',
+<<<<<<< HEAD
                     data: { id: publicacionId },
+=======
+                    data: {
+                        id: publicacionId
+                    },
+>>>>>>> 11b1403 (Todo junto)
                     success: function(response) {
                         if (response === 'success') {
                             // Refrescar la página después de marcar como vendido
@@ -168,4 +181,9 @@ $publicaciones_usuario = $stmt_publicaciones_usuario->fetchAll(PDO::FETCH_ASSOC)
     </script>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+
+</html>
+>>>>>>> 11b1403 (Todo junto)

@@ -51,6 +51,7 @@ if (!empty($usuario['foto_perfil'])) {
         <a href="../vistas/perfil.php">Perfil</a>
         <a href="../vistas/editarperfil.php">Editar perfil</a>
         <a href="../php/logout.php">Cerrar sesión</a>
+        <a href="../vistas/inventario.php"><span>Inventario</span></a>      
       </div>
     </div>
   </header>

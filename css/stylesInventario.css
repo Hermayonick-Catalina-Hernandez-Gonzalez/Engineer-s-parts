@@ -5,7 +5,10 @@ h2 {
     font-weight: bold;
     font-size: 24px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 /* Contenedor de la tabla */
 .tabla-contenedor {
     width: 90%;
@@ -13,20 +16,29 @@ h2 {
     margin: 0 auto;
     text-align: center;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 /* Estilo de la tabla */
 table.display {
     width: 100%;  /* La tabla ocupará el 100% del contenedor */
     margin-top: 10px;
     border-collapse: collapse;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 .dataTables_wrapper .top {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 table.dataTable thead th {
     background-color: #23A199;
     color: white;
@@ -34,13 +46,17 @@ table.dataTable thead th {
     font-size: 16px;
     font-weight: bold;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 table.dataTable tbody td {
     padding: 10px;
     text-align: center;
     font-size: 14px;
     color: #333;
 }
+<<<<<<< HEAD
 
 table.dataTable tbody tr {
     background-color: #f8f8f8;
@@ -50,6 +66,14 @@ table.dataTable tbody tr:hover {
     background-color: #e0f7fa;
 }
 
+=======
+table.dataTable tbody tr {
+    background-color: #f8f8f8;
+}
+table.dataTable tbody tr:hover {
+    background-color: #e0f7fa;
+}
+>>>>>>> 11b1403 (Todo junto)
 /* Estilo para botones y enlaces de DataTables */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     background-color: #23A199;
@@ -59,36 +83,52 @@ table.dataTable tbody tr:hover {
     margin: 2px;
     text-decoration: none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background-color: #1b8073;
     color: white !important;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 .dataTables_wrapper .dataTables_length select,
 .dataTables_wrapper .dataTables_filter input {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 5px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     h2 {
         font-size: 20px;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
     nav a {
         font-size: 14px;
         margin: 0 10px;
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11b1403 (Todo junto)
 /* Estilo para la columna de acciones */
 .accion {
     cursor: pointer;
     font-weight: bold;
 }
+<<<<<<< HEAD
 
 .eliminar {
     color: red;
@@ -101,3 +141,14 @@ table.dataTable tbody tr:hover {
 .accion:hover {
     text-decoration: underline;
 }
+=======
+.eliminar {
+    color: red;
+}
+.devolver {
+    color: blue;
+}
+.accion:hover {
+    text-decoration: underline;
+}
+>>>>>>> 11b1403 (Todo junto)

@@ -30,7 +30,11 @@ CREATE TABLE `fotos` (
   `nombre_producto` varchar(255) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+<<<<<<< HEAD
   `status` varchar(20) NOT NULL DEFAULT 'En venta',
+=======
+    `status` varchar(20) NOT NULL DEFAULT 'En venta',
+>>>>>>> 11b1403 (Todo junto)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -52,6 +56,27 @@ CREATE TABLE seguidores (
     fecha_hora DATETIME NOT NULL,
     eliminado TINYINT(1) DEFAULT 0
 );
+
+-- Creación de la tabla `Respuestas`.
+CREATE TABLE respuestas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comentario_id INT NOT NULL, -- Relaciona la respuesta con el comentario
+    usuario_id INT NOT NULL, -- ID del usuario que respondió (opcional)
+    respuesta TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (comentario_id) REFERENCES comentarios(id) ON DELETE CASCADE
+);
+
+-- Creación de la tabla `comentarios`.
+CREATE TABLE `comentarios` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `foto_id` INT NOT NULL,
+  `usuario_id` INT NOT NULL,
+  `comentario` TEXT NOT NULL,
+  `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`foto_id`) REFERENCES `fotos`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Creación de la vista `fotos_v`
 DROP VIEW IF EXISTS `fotos_v`;
