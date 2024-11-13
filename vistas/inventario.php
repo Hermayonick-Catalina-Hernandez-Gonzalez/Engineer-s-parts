@@ -1,20 +1,12 @@
 <?php
 require "../php/sesion_requerida.php";
 require "../php/connection.php";
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
 // Consulta para obtener todos los productos con el estado "Vendido"
 $sql = "SELECT * FROM fotos WHERE status = 'Vendido' AND eliminado = 0";
 $stmt = $connection->prepare($sql);
 $stmt->execute();
 $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,10 +20,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 </head>
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
 <body>
     <header class="navbar">
         <div class="logo">
@@ -55,10 +43,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </header>
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
     <div class="tabla-contenedor">
         <h2>Inventario - Productos Vendidos</h2>
         
@@ -88,10 +72,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
     <script>
         $(document).ready(function() {
             $('#productosVendidosTable').DataTable({
@@ -102,10 +82,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 "pageLength": 10
             });
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
         // Función para eliminar una publicación
         $(document).on('click', '.eliminar', function() {
             var id = $(this).data('id');
@@ -125,10 +101,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
             }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
         // Función para devolver una publicación a "En venta"
         $(document).on('click', '.devolver', function() {
             var id = $(this).data('id');
@@ -148,10 +120,6 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
             }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> 11b1403 (Todo junto)
         function toggleDropdown() {
             document.getElementById("dropdownMenu").classList.toggle("show");
         }
@@ -168,8 +136,4 @@ $productosVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 11b1403 (Todo junto)
