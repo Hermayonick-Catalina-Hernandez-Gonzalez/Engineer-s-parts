@@ -6,13 +6,16 @@ require "../php/connection.php";
 $usuario_id = $_SESSION['id'];
 
 // Obtener el texto de búsqueda del cuerpo de la solicitud POST
-$texto_busqueda = filter_input(INPUT_POST, "texto");
+$texto_busqueda = filter_input(INPUT_POST, "texto", FILTER_SANITIZE_STRING);
 
-// Inicializar la consulta SQL y los parámetros de vinculación
-$sql = "SELECT * FROM fotos WHERE (nombre_producto LIKE :texto)";
-$params = [
-    ':texto' => "%$texto_busqueda%"
-];
+// Construir la consulta SQL, mostrando todos los productos si no hay texto de búsqueda
+if (!empty($texto_busqueda)) {
+    $sql = "SELECT * FROM fotos WHERE nombre_producto LIKE :texto";
+    $params = [':texto' => "%$texto_busqueda%"];
+} else {
+    $sql = "SELECT * FROM fotos"; // Mostrar todos los productos
+    $params = [];
+}
 
 // Ejecutar la consulta SQL
 $stmt = $connection->prepare($sql);
@@ -27,7 +30,7 @@ if ($stmt->rowCount() > 0) {
         echo "<img src='" . $imagen_producto . "' alt='" . htmlspecialchars($row['nombre_producto']) . "'/>";
         
         // Mostrar los detalles con etiquetas
-        echo "<div class='detalle'><strong></strong> " . htmlspecialchars($row['nombre_producto']) . "</div>";
+        echo "<div class='detalle'><strong>Producto:</strong> " . htmlspecialchars($row['nombre_producto']) . "</div>";
         echo "<div class='detalle'><strong>Precio:</strong> $" . htmlspecialchars($row['precio']) . "</div>";
         echo "<div class='detalle'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
         echo "<div class='detalle'><strong>Estado:</strong> " . htmlspecialchars($row['estado']) . "</div>";

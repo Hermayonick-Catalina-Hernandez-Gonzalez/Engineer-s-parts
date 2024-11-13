@@ -8,34 +8,20 @@
     <link rel="icon" href="../img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/stylesBuscador.css">
     <script>
-        function buscarUsuarios(texto) {
-            // Verificar si el texto de búsqueda no está vacío
-            if (texto.trim() !== "") {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("perfil-usuario").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("POST", "../php/buscador.php", true);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("texto=" + encodeURIComponent(texto));
-            } else {
-                // Limpiar la lista de resultados si el texto está vacío
-                document.getElementById("perfil-usuario").innerHTML = "";
-            }
+        function buscarUsuarios(texto = "") {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("perfil-usuario").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("POST", "../php/buscador.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("texto=" + encodeURIComponent(texto));
         }
 
-        // Función para actualizar la búsqueda automáticamente cada 5 segundos
-        function actualizarBusqueda() {
-            var texto = document.getElementById("search").value;
-            buscarUsuarios(texto);
-            setTimeout(actualizarBusqueda, 5000); // 5000 milisegundos = 5 segundos
-        }
-
-        // Llamar a la función de actualización al cargar la página
         window.onload = function () {
-            actualizarBusqueda();
+            buscarUsuarios(); // Mostrar todos los productos al cargar la página
         };
     </script>
 </head>
@@ -64,7 +50,6 @@
         </div>
     </header>
 
-
     <div class="contenedor">
         <header class="encabezado">
             <div class="barra-busqueda">
@@ -73,7 +58,7 @@
                 <img src="../img/Buscador.png" alt="Buscar" class="icono-buscar">
             </div>
         </header>
-        <ul class="perfil-usuario" id="perfil-usuario"></ul>
+        <div class="perfil-usuario" id="perfil-usuario"></div>
     </div>
 
     <script>
