@@ -66,7 +66,7 @@ if (!in_array($extension, $EXT_ARCHIVOS_FOTOS)) {
 
 // Generar un nombre único para guardar el archivo
 $nombreArchivoGuardado = strtoupper(bin2hex(random_bytes(32))); // Genera un nombre aleatorio en hexadecimal
-$ruta = "C:/xampp/htdocs/Engineer-s-parts/fotos/" . $nombreArchivoGuardado . "." . $extension; // Construye la ruta completa para guardar el archivo
+$ruta = "C:/xampp/htdocs/xampp/Engineer's parts/fotos/" . $nombreArchivoGuardado . "." . $extension; // Construye la ruta completa para guardar el archivo
 
 // Mover el archivo subido a la ubicación final
 $seGuardo = move_uploaded_file($archivoSubido["tmp_name"], $ruta); // Mueve el archivo desde su ubicación temporal a la definitiva
@@ -103,12 +103,11 @@ $sqlParam = [
 // Prepara la consulta SQL
 $stmt = $connection->prepare($sqlCmd);
 
-// Ejecutar la consulta y verificar el resultado
 if ($stmt->execute($sqlParam)) {
-    // Si la consulta se ejecuta correctamente, devuelve un mensaje de éxito
-    echo json_encode(["mensaje" => "Registro guardado exitosamente"]);
+    // Registro exitoso
+    echo json_encode(["success" => true, "mensaje" => "Registro guardado exitosamente"]);
 } else {
-    // Si ocurre un error al ejecutar la consulta, devuelve un error
+    // Error en la consulta
     echo json_encode(["errores" => ["Error al ejecutar la consulta SQL."]]);
-    exit();
 }
+exit();
