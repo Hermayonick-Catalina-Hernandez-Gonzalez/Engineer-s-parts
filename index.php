@@ -72,13 +72,16 @@ $publicaciones = $stmt->fetchAll();
 
                     <!-- Área de Me gusta y Contador de Me gusta -->
                     <div class="post-actions">
+                         <!-- en el div se agregan los botones con un emojis -->
                         <button class="like-btn" onclick="likePost(<?= $publicacion['id'] ?>)">❤️ Me gusta</button>
+                    <!-- Se agrega un snap para que al momento de pasar el mouse se subraye -->
                         <span id="likes-count-<?= $publicacion['id'] ?>"><?= $publicacion['likes_count'] ?? 0 ?> Me gusta</span>
                         <button class="comment-btn" onclick="toggleCommentForm(this)">💬 Comentar</button>
                     </div>
 
                     <!-- Sección de comentarios -->
                     <div class="comentarios">
+                        <!-- consulta de los comentario de la base de datos si es que hay -->
                         <?php
                         $sqlComentarios = "SELECT c.id, c.comentario, c.fecha, u.username as usuario_comentario, u.foto_perfil
                        FROM comentarios c 
@@ -89,13 +92,14 @@ $publicaciones = $stmt->fetchAll();
                         $stmtComentarios->bindParam(':foto_id', $publicacion['id']);
                         $stmtComentarios->execute();
                         $comentarios = $stmtComentarios->fetchAll();
-
+                        //Si no tiene foto de perfinl se pone una que se tiene como default
                         if (!empty($comentarios)) {
                             foreach ($comentarios as $comentario) {
                                 $fotoComentario = (!empty($comentario['foto_perfil']))
                                     ? './fotos_perfil/' . $comentario['foto_perfil']
-                                    : './fotos_perfil/default.png';
+                                    : './fotos_perfil/perfil.png';
                         ?>
+                        <!-- siguente div donde se pone el apartado del comentario-->
                                 <div class="comentario">
                                     <img src="<?= $fotoComentario ?>" alt="Perfil" class="profile-pic-comment">
                                     <div class="comment-content">
