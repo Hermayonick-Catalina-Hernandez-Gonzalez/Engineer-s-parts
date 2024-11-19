@@ -67,7 +67,7 @@ CREATE TABLE `comentarios` (
 
 
 -- Creación de la vista `fotos_v`
-CREATE VIEW `fotos_v` AS
+CREATE OR REPLACE VIEW `fotos_v` AS
 SELECT
   `fotos`.`id`,
   `fotos`.`usuario_subio_id`,
@@ -83,7 +83,7 @@ SELECT
   `usuarios`.`username`,
   `usuarios`.`email`,
   `fotos`.`status`,
-  `fotos`.`precio` 
+  `fotos`.`precio`
 FROM `fotos`
 LEFT JOIN `usuarios` ON `fotos`.`usuario_subio_id` = `usuarios`.`id`
-WHERE `fotos`.`eliminado` = 0;
+WHERE `fotos`.`eliminado` = 0 AND `fotos`.`status` = 'En venta';
