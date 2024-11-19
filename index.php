@@ -2,19 +2,21 @@
 require "./php/sesion_requerida.php";
 require "./php/connection.php";
 
-// Consulta para obtener todas las publicaciones junto con sus fotos de perfil y el conteo de "me gusta"
+// Consulta para obtener todas las publicaciones (excluyendo las que están vendidas)
 $sql = "SELECT f.*, u.username as usuario_subio_username, u.foto_perfil,
                (SELECT COUNT(*) FROM fotos_likes fl WHERE fl.foto_id = f.id) as likes_count
         FROM fotos_v f
         JOIN usuarios u ON f.usuario_subio_id = u.id
-        WHERE f.eliminado = 0
+        WHERE f.eliminado = 0 AND f.status != 'Vendido'
         ORDER BY f.fecha_subido DESC;";
 
 // Preparar y ejecutar la consulta
 $stmt = $connection->prepare($sql);
 $stmt->execute();
+
 // Verificar si se obtuvieron resultados y almacenarlos en $publicaciones
 $publicaciones = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

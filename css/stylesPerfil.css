@@ -17,10 +17,14 @@ body {
 
 /* Navbar */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     padding: 10px 20px;
     background-color: #23A199;
     color: white;
@@ -97,17 +101,22 @@ nav a {
 
 /* Contenedor principal */
 .contenedor {
+    margin-top: 80px; /* Espacio para la barra fija */
+    width: 100%;
+    max-width: 1200px; /* Limitar el ancho en pantallas grandes */
     padding: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Apilar verticalmente */
     align-items: center;
-    height: calc(100vh - 60px);
+    box-sizing: border-box;
 }
 
-/* Perfil del usuario */
+/* Perfil */
 .perfil {
-    width: 600px;
     text-align: center;
+    width: 100%;
+    max-width: 800px; /* Limitar el ancho */
+    margin-bottom: 20px; /* Separación con la galería */
 }
 
 /* Foto de usuario redonda, centrada y fija */
